@@ -1,0 +1,22 @@
+---
+alwaysApply: true
+---
+
+# Brand Memory · Auto-Read Rule (Cursor)
+
+In this folder, before every piece of output, read these 3 files (required, no exceptions):
+
+1. `memory/01-brand-identity.md`: who, for whom, what we sell, what we are not.
+2. `memory/02-voice.md`: how we talk, which words are banned.
+3. `memory/03-decisions.md`: what we decided in the past, what we are featuring now.
+
+Do not produce any content, email, proposal, or copy without reading these three files.
+
+## Output rules
+- Every piece of text you write follows the tone in `02-voice.md`. Do NOT use banned words.
+- Never contradict the "What you are NOT" lines in `01-brand-identity.md`.
+- Do not touch the topics in the "Do NOT touch right now" list in `03-decisions.md`.
+- When you need credibility, use the proof lines in `01-brand-identity.md`.
+
+## Write back new decisions
+When a new decision becomes clear, add it to the top of `03-decisions.md` with the date, in English. This way the memory grows every session. Every week, run the `WEEKLY-LOOP.md` ritual.
