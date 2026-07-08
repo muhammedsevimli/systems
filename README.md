@@ -9,6 +9,8 @@ An open collection of real systems Muhammed Sevimli builds with AI. Each system 
 | Brand Memory | Write your brand once so AI never forgets it. A three-file brand memory that works in Claude Code, Cursor, Codex and 20+ tools. | [brand-memory/](brand-memory/) |
 | Sales CRM | A single-file CRM for sales / call-center teams. Every customer on one card, a morning call list, a month-end sales panel. Shared team mode via Google Sheets. | [sales-crm/](sales-crm/) |
 | Competitor Tracker | Scans your competitors (site, news, youtube, instagram) weekly and boils it into one Monday report: a summary of each new post + how to adapt it to your brand. | [competitor-tracker/](competitor-tracker/) |
+| Second Brain | Write your work into files once so AI already knows the history on every task: projects, decisions, people, resources. It loads only what each task needs. | [second-brain/](second-brain/) |
+| Carousel + Hook Generator | Give a topic, get 3 cover hooks and a 7-slide carousel in your brand voice (with image directions + a LinkedIn version). | [carousel-generator/](carousel-generator/) |
 
 More systems will be added over time. Each system has its own README that explains setup.
 

@@ -1,0 +1,29 @@
+---
+alwaysApply: true
+---
+
+# Second Brain · Auto Context-Loading Rule (Cursor)
+
+In this folder, before every task, ALWAYS read these two files:
+
+1. `memory/00-index.md`: what is in the brain, which file holds what. This is your map.
+2. `memory/01-core.md`: who, what we do, what the priority is now. Needed on every task.
+
+Then load what the task needs (not everything):
+
+| Task type | Also read |
+|---|---|
+| Writing content / email / proposal | `memory/02-voice.md`, `memory/05-decisions.md` |
+| Working on a project | `memory/03-projects.md` |
+| Customer / people-related work | `memory/04-people.md` |
+| Using a tool / resource | `memory/06-resources.md` |
+| Making a decision / "what did we say last time" | `memory/05-decisions.md` |
+
+## Output rules
+- Say in one line which files you read first (e.g. "core + projects + decisions read").
+- Do not contradict the "what we are NOT" lines in `01-core.md`. Do not enter the "do NOT touch now" list in `05-decisions.md`.
+- If producing text, follow the tone in `02-voice.md`, do not use banned words.
+- Do not make up what is not in the brain; say "this is not in the brain, want me to add it".
+
+## Write back new information
+New decision to the top of `05-decisions.md` with the date; new project to `03-projects.md`; new person to `04-people.md`; new resource to `06-resources.md`; if you added a new file, add a line to the `00-index.md` map. Once a week, run the `WEEKLY-LOOP.md` ritual.

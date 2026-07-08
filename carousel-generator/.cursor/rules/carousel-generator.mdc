@@ -1,0 +1,26 @@
+---
+alwaysApply: true
+---
+
+# Carousel + Hook Generator · Auto-Read Rule (Cursor)
+
+In this folder, when a carousel is requested, read these 5 files IN ORDER (required):
+
+1. `brand/01-brand.md` · who, for whom, what we sell, what we are not, proof.
+2. `brand/02-voice.md` · how we talk, how we address, banned words.
+3. `brand/03-swipe.md` · angles and hooks that landed before.
+4. `format/hook-patterns.md` · the hook formula bank.
+5. `format/carousel-format.md` · slide anatomy and the slide-count rule.
+
+Do not produce a carousel without reading these five files. When a topic is given, first say "brand + voice + swipe + format read".
+
+## Non-negotiable output rules
+- NEVER use the BANNED words in `brand/02-voice.md`. When you see a banned pattern, rewrite the slide.
+- Never contradict the "what we are NOT" lines in `brand/01-brand.md`.
+- Produce 3 hooks per carousel (pain, number, contrarian). The user picks one.
+- Cover stops the scroll, the last slide is one clear CTA, middle slides carry one idea (2-3 short sentences).
+- NO made-up numbers. Proof comes from the proof line in `brand/01-brand.md`; otherwise a "[put your own number here]" placeholder.
+- Em dash (long dash) appears nowhere in the output. If you need a separator, use a period, comma, colon, or middle dot (·).
+
+## Write back when a new angle lands
+If a hook or angle worked well, add it to the top of `brand/03-swipe.md` with the date, in English. This way the swipe-file grows with every carousel.
