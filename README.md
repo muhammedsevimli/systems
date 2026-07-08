@@ -7,6 +7,8 @@ An open collection of real systems Muhammed Sevimli builds with AI. Each system 
 | System | What it does | Folder |
 |---|---|---|
 | Brand Memory | Write your brand once so AI never forgets it. A three-file brand memory that works in Claude Code, Cursor, Codex and 20+ tools. | [brand-memory/](brand-memory/) |
+| Sales CRM | A single-file CRM for sales / call-center teams. Every customer on one card, a morning call list, a month-end sales panel. Shared team mode via Google Sheets. | [sales-crm/](sales-crm/) |
+| Competitor Tracker | Scans your competitors (site, news, youtube, instagram) weekly and boils it into one Monday report: a summary of each new post + how to adapt it to your brand. | [competitor-tracker/](competitor-tracker/) |
 
 More systems will be added over time. Each system has its own README that explains setup.
 
@@ -22,7 +24,7 @@ Or clone the whole repo, or download it with the green **Code → Download ZIP**
 
 ## Supported tools
 
-Every system works the same way across these tools. You do nothing; whichever tool you use reads its own file.
+File-based systems (e.g. Brand Memory) work the same way across these tools; whichever tool you use reads its own file. Standalone tools (Sales CRM in the browser, Competitor Tracker with Node) have their setup in their own README.
 
 | Tool | File it reads |
 |---|---|
