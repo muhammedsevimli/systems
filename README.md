@@ -12,6 +12,7 @@ An open collection of real systems Muhammed Sevimli builds with AI. Each system 
 | Second Brain | Write your work into files once so AI already knows the history on every task: projects, decisions, people, resources. It loads only what each task needs. | [second-brain/](second-brain/) |
 | Carousel + Hook Generator | Give a topic, get 3 cover hooks and a 7-slide carousel in your brand voice (with image directions + a LinkedIn version). | [carousel-generator/](carousel-generator/) |
 | Ad Spy · Competitor Ad Analyzer | Write your competitors, the system builds Meta Ad Library links. Paste the active ads, it extracts the pattern of the ads running for months and writes 10 ad concepts adapted to your brand. | [ad-spy/](ad-spy/) |
+| Review Miner · Customer Review Sales Miner | Paste your product's customer reviews, the system extracts the repeating themes, finds the most common objection, and writes a sales angle + objection response + ad hook for each theme. The proof of every angle is the customer's own sentence. | [review-miner/](review-miner/) |
 
 More systems will be added over time. Each system has its own README that explains setup.
 

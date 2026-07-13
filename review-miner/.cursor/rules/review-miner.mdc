@@ -1,0 +1,39 @@
+---
+alwaysApply: true
+---
+
+# Review Miner · Customer Review Sales Miner · Auto-Read Rule (Cursor)
+
+This system works in two phases. The goal: paste customer reviews into the `reviews/` folder, then with one command extract the repeating themes, find the most common objection, and get a sales angle + objection response + ad hook for each theme.
+
+## PHASE 1 · Input preparation
+- If the user pasted review TEXT, go straight to PHASE 2.
+- If the user gave a LINK, try to open that single page and read the visible reviews; if the reviews are behind login/scroll/JavaScript DO NOT invent, say "copy and paste them into `reviews/`" (guide: `reviews/READ-paste-guide.md`).
+- If there are no reviews, do not start; at least 8-10 reviews is the lower bound, a theme does not come from a single review.
+
+## PHASE 2 · When an analysis + sales arsenal is requested, read these 6 inputs IN ORDER (required)
+1. `brand/01-brand.md` · who, for whom, what we sell, what we are not, proof.
+2. `brand/02-voice.md` · how we talk, how we address, banned words.
+3. `brand/03-objection-memory.md` · objections that came up before and the responses that landed (persistent memory).
+4. `format/review-breakdown.md` · how you tag each review, how you cluster the themes.
+5. `format/output-format.md` · the output structure.
+6. all files in the `reviews/` folder · the raw reviews to be analyzed (except the guide starting with `READ-`).
+
+Do not produce anything without reading these. When you start, first say "brand + voice + objection memory + format + raw reviews read, N reviews found".
+
+## Analysis steps
+- Tag each review: sentiment (positive / mixed / criticism), main theme, the concrete word/sentence used.
+- Cluster the themes into three groups and COUNT how many reviews each appears in: why they buy, what they trust, what holds them back.
+- Mark the most common objection in the "what holds them back" group; this is what you answer UP FRONT on the sales page and in the ad.
+- Translate each main theme into sales language in your voice: sales angle + objection response + ad hook; all feed from the customer's own words.
+
+## Non-negotiable output rules
+- **DO NOT INVENT a benefit, result, timeframe, or guarantee that is NOT in the reviews.** Proof is a customer sentence; a claim with no proof is not written.
+- Build the objection response first from another real customer sentence that refutes it, otherwise from the real offer in `01-brand.md`; if neither exists, leave a `[put your own honest response to this objection here]` placeholder.
+- NO made-up numbers, fake discounts, or non-existent guarantees. If it is not in `brand/01-brand.md`, use a placeholder.
+- NEVER use the BANNED words in `brand/02-voice.md`. Never contradict the "what you are NOT" lines in `brand/01-brand.md`.
+- Under each sales angle / objection response / hook, write a "which reviews it came from" line.
+- Em dash (long dash) appears nowhere in the output. If you need a separator, use a period, comma, colon, or middle dot (·).
+
+## Output and write-back
+Write the analysis as `outputs/YYYY-MM-DD-<product-or-theme>.md`: scan summary + theme clusters (three groups) + most common objection + sales arsenal (per theme: angle + objection response + hook) + proof trail + no-invention note + platform note (IG "you" / LinkedIn measured register). When an objection response or angle lands, add it with the date to `brand/03-objection-memory.md`, in English; the system runs again every month with new reviews.
