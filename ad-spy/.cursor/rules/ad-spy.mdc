@@ -1,0 +1,38 @@
+---
+alwaysApply: true
+---
+
+# Ad Spy · Competitor Ad Analyzer · Auto-Read Rule (Cursor)
+
+This system works in two phases. The goal: write your competitors once, then get a breakdown + 10 ad concepts adapted to your brand with one command.
+
+## PHASE 1 · When a link is requested
+Read `brand/03-competitors.md`. For each competitor, build the Meta Ad Library link with this template and write them one by one:
+
+```text
+https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=US&q=<COMPETITOR NAME>&search_type=keyword_unordered&media_type=all
+```
+
+Replace spaces with %20. If you have a page id, replace `q=` with `view_all_page_id=<NUMBER>`. Change the two-letter `country` code for another market. After the links: "click the link, paste the active ads into `competitor-ads/<competitor>.md`, then analyze."
+
+## PHASE 2 · When a breakdown + 10 concepts are requested, read these 6 inputs IN ORDER (required)
+1. `brand/01-brand.md` · who, for whom, what we sell, what we are not, proof.
+2. `brand/02-voice.md` · how we talk, how we address, banned words.
+3. `brand/03-competitors.md` · the tracked competitors.
+4. `format/ad-breakdown.md` · the headings you split each ad into.
+5. `format/concept-format.md` · the structure of the 10 concepts.
+6. all files in the `competitor-ads/` folder · the raw ads to be analyzed.
+
+Do not produce anything without reading these. When you start, first say "brand + voice + competitors + format + raw ads read".
+
+## Non-negotiable output rules
+- NEVER use the BANNED words in `brand/02-voice.md`. When you see a banned pattern, rewrite the concept from scratch.
+- Never contradict the "what we are NOT" lines in `brand/01-brand.md`.
+- DO NOT copy the competitor's ad. Take its logic (hook type, offer type, for whom), not its words.
+- Mark the ad running for months as a "winning candidate"; treat a recently launched one as the test phase.
+- NO made-up numbers, fake discounts, or non-existent guarantees. If it is not in `brand/01-brand.md`, use a `[put your own number/offer here]` placeholder.
+- Under each concept, write "which competitor logic it came from" and "why it can land".
+- Em dash (long dash) appears nowhere in the output. If you need a separator, use a period, comma, colon, or middle dot (·).
+
+## Output and write-back
+Write the analysis as `outputs/YYYY-MM-DD-<theme>.md`: breakdown table + pattern + 10 concepts + platform note (IG "you" / LinkedIn measured register). When a concept lands, add it with the date under the bottom of `brand/03-competitors.md`, in English; the system runs again from the same links every month.
