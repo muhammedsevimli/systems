@@ -1,0 +1,14 @@
+every-morning production.
+
+analyze the winning ads, customer reviews, and most-liked comments in the inputs folder and produce 50 static ad concepts for me.
+
+rules:
+- first say in one line that you read the brand + voice + winning memory + format + input files.
+- break down the winning ads: hook, promise, for whom, emotion, format, proof. collect the repeating pain, praise, and objection from the customer reviews. extract the viral angle from the liked comments.
+- summarize the extracted pattern in one paragraph.
+- dress that logic in my brand and voice and write 50 concepts. each concept is three lines: hook, visual direction, one-line rationale.
+- make the 50 concepts truly diverse: follow the rotation grid in concept-format.md (hook type + segment + emotion). do not write the same hook again with the words swapped.
+- do not invent a number/discount/guarantee i do not have, leave a placeholder. do not invent reviews, take them from the real input.
+- do not use the banned words in 02-voice.md, do not use em dashes.
+- right before writing the file, scan all the text for em dashes; if you find even one, replace them all with a middle dot ( · ). shortlist and summary notes included.
+- write the output to the outputs folder with today's date as YYYY-MM-DD-morning.md. at the end, give a "morning shortlist" note (the first 5 concepts to try) and a LinkedIn measured-register note.

@@ -13,6 +13,7 @@ An open collection of real systems Muhammed Sevimli builds with AI. Each system 
 | Carousel + Hook Generator | Give a topic, get 3 cover hooks and a 7-slide carousel in your brand voice (with image directions + a LinkedIn version). | [carousel-generator/](carousel-generator/) |
 | Ad Spy · Competitor Ad Analyzer | Write your competitors, the system builds Meta Ad Library links. Paste the active ads, it extracts the pattern of the ads running for months and writes 10 ad concepts adapted to your brand. | [ad-spy/](ad-spy/) |
 | Review Miner · Customer Review Sales Miner | Paste your product's customer reviews, the system extracts the repeating themes, finds the most common objection, and writes a sales angle + objection response + ad hook for each theme. The proof of every angle is the customer's own sentence. | [review-miner/](review-miner/) |
+| Ad Concept Factory · 50 Static Ad Concepts | Write your own winning ads and customer reviews, the system produces 50 diverse static ad concepts in your brand voice (automatically every morning or with one command). Rotation of hook type x segment x emotion; each concept is hook + visual direction + rationale. | [ad-concept-factory/](ad-concept-factory/) |
 
 More systems will be added over time. Each system has its own README that explains setup.
 

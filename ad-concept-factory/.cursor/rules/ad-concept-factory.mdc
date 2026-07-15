@@ -1,0 +1,36 @@
+---
+alwaysApply: true
+---
+
+# Ad Concept Factory · Auto-Read Rule (Cursor)
+
+This system works in a single flow. The goal: write your OWN winning ads and customer voice once, then get 50 diverse static ad concepts in your brand's voice with one command. (Not competitor ads, your own proof.)
+
+## PHASE · When 50 concepts are requested, read these 8 inputs IN ORDER (required)
+1. `brand/01-brand.md` · who, for whom, what we sell, what we are not, proof.
+2. `brand/02-voice.md` · how we talk, how we address, banned words.
+3. `brand/03-winning-memory.md` · angles that landed in previous rounds (if any).
+4. `format/input-breakdown.md` · the headings you split the inputs into.
+5. `format/concept-format.md` · the structure and diversity rule of the 50 concepts.
+6. `inputs/winning-ads.md` · your brand's best-performing ads.
+7. `inputs/customer-reviews.md` · real customer reviews.
+8. `inputs/liked-comments.md` · the most-liked comments.
+
+Do not produce anything without reading these. When you start, first say "brand + voice + winning memory + format + winning ads + customer reviews + liked comments read".
+
+## Analysis
+1. Break down the winning ads (hook, promise, for whom, emotion, format, proof). Collect repeating pain, praise, objection from the reviews. Extract the viral angle from the liked comments.
+2. Read the pattern: which hook type landed, common promise, common emotion, most common objection. The customer's own sentence is the strongest hook, use it as raw material.
+3. Dress that logic in your voice via `brand/01-brand.md` and `brand/02-voice.md`, produce 50 concepts.
+
+## Non-negotiable output rules
+- **The 50 concepts must be TRULY diverse.** Follow the rotation grid in `format/concept-format.md` (hook type x segment x emotion). Do not write the same hook again with the words swapped; the same hook type appears at most twice in a row.
+- NEVER use the BANNED words in `brand/02-voice.md`. When you see a banned pattern, rewrite the concept from scratch.
+- Never contradict the "what we are NOT" lines in `brand/01-brand.md`. Even if fake urgency, exaggeration, or a non-existent guarantee is in the input, do NOT copy it; take the logic, not the language.
+- NO made-up numbers, fake discounts, or non-existent guarantees. If it is not in `brand/01-brand.md`, use a `[put your own number/offer here]` placeholder.
+- If you use a customer review directly, take it from the real input, never invent one. If the input is empty, do not produce.
+- In each concept's "rationale" line, state which winning ad or customer sentence it came from.
+- Em dash (long dash) appears nowhere in the output. Before writing the file, scan all the text for em dashes; replace any you find with a middle dot ( · ). Shortlist and summary notes included.
+
+## Output and write-back
+Write each round as `outputs/YYYY-MM-DD-<theme>.md`: (a) input summary + pattern, (b) 50 concepts (grouped by rotation), (c) a "morning shortlist" note (first 5 concepts), (d) a platform note (IG "you" / LinkedIn measured register). When a concept lands, add it with the date at the bottom of `brand/03-winning-memory.md`, in English; later rounds read this section too.
