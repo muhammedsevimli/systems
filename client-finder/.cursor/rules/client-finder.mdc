@@ -1,0 +1,41 @@
+---
+alwaysApply: true
+---
+
+# Client Finder · Prospect Finding + First Message · Auto-Read Rule (Cursor)
+
+This system works in two phases. The goal: write your niche once, get a ranked prospect list + a tailored first message for each prospect with one command.
+
+## PHASE 1 · When a link is requested
+Read `target/01-niche.md`. For each search term, build the Meta Ad Library link with this template and write them one by one:
+
+```text
+https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=US&q=<NICHE>&search_type=keyword_unordered&media_type=all
+```
+
+Replace spaces with %20 and URL-encode non-ASCII characters. Use the country code from the file instead of `country=` (if there is none, assume US and say so). Build a SEPARATE link for EACH search term. After the links: "click the link, paste the brands you see into `prospects/<niche>.md`, then run command 2."
+
+## PHASE 2 · When a prospect list + messages are requested, read these 6 inputs IN ORDER (required)
+1. `brand/01-service.md` · what you sell, to whom, price range, what you are NOT.
+2. `brand/02-voice.md` · how you write, how you address, banned words.
+3. `target/01-niche.md` · which niche, which country you are prospecting in.
+4. `format/prospect-breakdown.md` · breakdown headings + the ranking score.
+5. `format/message-format.md` · the structure of the first message.
+6. all files in the `prospects/` folder · the raw prospects to be broken down.
+
+Do not produce anything without reading these inputs. When you start, first say "service + voice + niche + format + raw prospects read".
+
+## Non-negotiable output rules
+- NEVER use the BANNED words in `brand/02-voice.md`. When you see a banned pattern, rewrite the message from scratch.
+- Never contradict the "what I am NOT" lines in `brand/01-service.md`. Do not offer work you do not do.
+- Mark a brand running ads for months as "has budget", treat a brand that just started as the test phase.
+- Write the weak point BY SHOWING IT FROM THE AD (weak hook / unclear offer / single format / no social proof). Do not make generic remarks.
+- Score and rank: budget signal (0-4) + how solvable the weakness is with your service (0-4) + fit with your price range (0-2). Never give a score without a reason.
+- **Tailored message:** every message contains a SPECIFIC detail from that brand's ad. If there is no detail, do not write the message: say "not enough information".
+- **One question.** One clear question at the end of the message. No option pile. No price, package, or calendar link in the first message.
+- NO made-up numbers, fake references, or non-existent work examples. If it is not in `brand/01-service.md`, use a `[put your own example/number here]` placeholder. Do not invent anything about the prospect that is not written in `prospects/`.
+- Bulk-send language is banned ("hello, I would like to introduce our services").
+- Em dash (long dash) appears nowhere in the output. If you need a separator, use a period, comma, colon, or middle dot (·).
+
+## Output and write-back
+Write the run as `outputs/YYYY-MM-DD-<niche>.md`: breakdown table + ranked prospect list (with the score breakdown) + tailored messages + platform note (DM: direct and casual / LinkedIn and email: a more measured register). When a message gets a reply, add it with the date under the "angles that got replies" section at the bottom of `target/01-niche.md`; later runs feed from there too.
