@@ -1,0 +1,28 @@
+# Secrets / credentials, never commit
+.env
+.env.*
+!.env.example
+.secrets/
+*.key
+*.pem
+*.p12
+*.pfx
+*token*
+*secret*
+*credential*
+*apikey*
+*api_key*
+
+# Dependencies / build
+node_modules/
+dist/
+build/
+__pycache__/
+*.pyc
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log

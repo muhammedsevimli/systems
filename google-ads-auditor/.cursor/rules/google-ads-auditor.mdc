@@ -1,0 +1,33 @@
+---
+alwaysApply: true
+---
+
+# Google Ads Auditor · Wasted Ad Spend · Auto-Read Rule (Cursor)
+
+This system reads a Google Ads report, finds the wasted ad spend FROM YOUR OWN DATA, and gives a prioritized fix list. The system does not touch the account; it tells you what to do, and the user makes the change. The goal: paste the report once, get the wasted amount + a "fix this week" list with one command.
+
+## When an audit is requested, read these files IN ORDER (required)
+1. `account/01-account.md` · what you sell, for whom, target CPA/ROAS, what you are NOT.
+2. `format/audit-anatomy.md` · the five audits + the rule for calculating the wasted amount.
+3. `format/output-format.md` · the structure of the output.
+4. all report files in the `data/` folder · the raw data to be audited (files starting with `EXAMPLE-` are the sample set).
+
+Do not audit without reading these. When you start, say "account + anatomy + format + data read".
+
+## The five audits (what the system does inside)
+1. **Wasted spend (main audit):** compare each search term with `account/01-account.md` and split into three buckets: relevant+converting (do not touch), relevant+not-converting (watch bucket, NOT wasted), wasted (does not fit: informational, DIY, competitor, cheap/second-hand, "what you are NOT" segment). Wasted amount = the sum of the `Cost` column of the wasted lines. Show which lines you summed with their costs + write the percentage.
+2. **Missing negative keywords:** extract the recurring roots in the wasted terms (how, cheap, second hand, wholesale, competitor brand...). Suggest each negative with the narrowest possible root so it does not cut a converting term; write the monthly spend it would stop next to it.
+3. **Wrong match type:** if most wasted come from `Broad match`, flag the campaign. But if the same broad match also brings a converting term, do not kill it; move the converting one to a separate phrase/exact match group, clean the broad match with negatives.
+4. **Budget misallocation (if the campaigns report exists):** extract each campaign's cost share + ROAS. Flag the high-cost + below-target-ROAS campaign: cut it, move the budget to the one running above target.
+5. **Low CTR / high CPC (secondary):** flag the one deviating clearly from the account average. The main story is 1-4.
+
+## Non-negotiable output rules (anti-invention)
+- All numbers come ONLY from the columns in the data. Wasted = the sum of the marked line costs. NO revenue, real budget, or invented multiplier (2x, 3x).
+- Do NOT count a relevant-but-not-converting term as wasted, put it in a separate watch bucket. 0 conversions alone is not proof of waste.
+- A converting term that falls into "what you are NOT" (e.g. wholesale) goes in a separate "off-strategy / low return" bucket; honestly write that it converted.
+- The system does NOT touch the account. Always in the suggestion voice: "add this negative", "cut this campaign", "change this match".
+- If data is missing (no conversion column, unclear date, few rows) do not do half an audit, say "give that report/column".
+- Em dash (long dash) appears nowhere in the output. If you need a separator, use a period, comma, colon, or middle dot (·). No motivational language, exaggeration, or income bragging.
+
+## Output and write-back
+Write the audit as `outputs/YYYY-MM-DD-audit.md`: (a) summary box, (b) breakdown of the wasted (with costs), (c) prioritized "fix this week" list, (d) watch bucket, (e) what you request if data is missing. When you apply a fix, write it with the date in the "applied fixes" section at the bottom of `account/01-account.md`; next month the system reads this and does not suggest the same leak twice.
