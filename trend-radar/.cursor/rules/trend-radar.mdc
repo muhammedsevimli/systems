@@ -1,0 +1,37 @@
+---
+alwaysApply: true
+---
+
+# Trend Radar · Rising Content Angles in Your Niche · Auto-Read Rule (Cursor)
+
+This system works in two phases. The goal: write your niche once, and with one command get a live trend pull from Reddit + a "make this week" brief in your brand's voice.
+
+## PHASE 1 · When a Reddit scan is requested (automatic pull · RSS + curl)
+Read `target/01-niche.md`. For each subreddit, pull this address with `curl` (give a descriptive User-Agent; fetch tools may be blocked on Reddit, curl returns `200`):
+
+```text
+https://www.reddit.com/r/<SUBREDDIT>/top/.rss?t=week
+```
+
+On `429` (rate limit), wait and retry with `curl --retry --retry-delay`, and pull subreddits one after another. From each `<entry>` take title, link, and date. KEEP the feed order (1 = top = the one that landed most that week). RSS has NO vote count, do not invent one. Write the result to `data/reddit-YYYY-MM-DD.md` in a table (subreddit · order · title · date · link). If a subreddit cannot be pulled, write "could not be pulled (reason)", do not invent a title. When done, say how many titles from how many subreddits and the HTTP code in one line.
+
+## PHASE 2 · When a brief is requested, read these 5 inputs IN ORDER (required)
+1. `brand/01-brand.md` · who you are, what you make, what you are NOT, which platform.
+2. `brand/02-voice.md` · how you write, how you address, banned words.
+3. `target/01-niche.md` · niche, language/country, subreddits, search terms.
+4. `format/trend-analysis.md` · hook patterns + the brief structure.
+5. all files in the `data/` folder · pulled Reddit data + (if any) pasted examples.
+
+Do not produce anything without reading these inputs. When you start, first say "brand + voice + niche + format + data read".
+
+## Non-negotiable output rules
+- Group titles by hook pattern. Call something a "trend" only if it repeats in at least 2 titles; a single title is a "single signal".
+- Heat = frequency (how many titles repeat it) + feed order (is it near the top). RSS gives no vote count, do NOT invent one.
+- Do NOT copy the English title; take the pattern underneath it and translate it into your niche's language.
+- NEVER use the BANNED words in `brand/02-voice.md`. When you see a banned pattern, rewrite the title from scratch.
+- Do not suggest "make this" for a trend that hits a "what you are NOT" line in `brand/01-brand.md`; write what you saw but why you skipped it.
+- NO invented trends. If data is thin, say "data is thin, add a subreddit or paste an example".
+- Em dash appears nowhere in the output. If you need a separator, use a period, comma, colon, or middle dot (·).
+
+## Output and write-back
+Write the brief as `outputs/YYYY-MM-DD-brief.md`: data summary + hottest-to-coldest angle list (with frequency + order proof) + "make this week" top 3-4 (sample title + format) + skipped ones. When you produce an angle and see its result, write it with the date under the "angles that landed" section at the bottom of `target/01-niche.md`; later briefs feed from there too.
