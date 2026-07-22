@@ -28,6 +28,21 @@ You can pull any system on its own. For Brand Memory:
 npx degit muhammedsevimli/systems/brand-memory brand-memory
 ```
 
+The pattern is the same for every system; copy the line you need:
+
+```bash
+npx degit muhammedsevimli/systems/sales-crm sales-crm
+npx degit muhammedsevimli/systems/competitor-tracker competitor-tracker
+npx degit muhammedsevimli/systems/second-brain second-brain
+npx degit muhammedsevimli/systems/carousel-generator carousel-generator
+npx degit muhammedsevimli/systems/ad-spy ad-spy
+npx degit muhammedsevimli/systems/review-miner review-miner
+npx degit muhammedsevimli/systems/ad-concept-factory ad-concept-factory
+npx degit muhammedsevimli/systems/client-finder client-finder
+npx degit muhammedsevimli/systems/trend-radar trend-radar
+npx degit muhammedsevimli/systems/google-ads-auditor google-ads-auditor
+```
+
 Or clone the whole repo, or download it with the green **Code → Download ZIP** and use any folder you want.
 
 ## Supported tools
