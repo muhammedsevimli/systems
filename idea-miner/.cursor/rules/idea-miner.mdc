@@ -1,0 +1,45 @@
+---
+alwaysApply: true
+---
+
+# Idea Miner · SaaS Idea Scorer · Auto-Read Rule (Cursor)
+
+This system works in two phases. The goal: write the field you care about once, and with one command get a live demand scan + the 5 best SaaS ideas you could build this week, scored and justified. The system finds the idea, you choose the idea.
+
+## PHASE 1 · When an automatic scan is requested
+Read `you/01-profile.md` (the field) and `you/02-sources.md` (search queries + demand-language patterns). Scan these sources yourself, pasting nothing:
+
+- **Hacker News (fully automatic):** fetch `https://hn.algolia.com/api/v1/search?query=<QUERY>&tags=comment&hitsPerPage=30` for each query (spaces as `+`, use `https`, plain `http` answers `301`). Take the sentences carrying demand or money language from `comment_text` VERBATIM, save them with `story_title`.
+- **Reddit (fully automatic · RSS + curl):** Reddit's keyless `.json` returns `403`; the public RSS search feed returns `200`. Pull with `curl` and a descriptive User-Agent: `https://www.reddit.com/search.rss?q=<QUERY>&sort=relevance&t=year` or, inside a target community, `https://www.reddit.com/r/<SUB>/search.rss?q=<QUERY>&restrict_sr=1&sort=relevance&t=year`. On `429` (rate limit) wait and retry with `curl --retry 5 --retry-delay 8 --retry-all-errors`, and pull queries one after another. Take title, link, and the demand sentence from each `<entry>`.
+- **Web + forums (fully automatic):** run a web search for each query (industry forums, community sites, marketplace and app store reviews). Take the real pain sentences in the snippets and the names of any existing solution or competitor.
+- **X (semi-automatic):** do not pull it. Build the link `https://x.com/search?q=<QUERY>&f=live` for each X query and hand it over as "look by hand if you want".
+
+Write every signal into `signals/collected-YYYY-MM-DD.md`: source · link · who is saying it · the pain sentence (verbatim) · money language (explicit / indirect / none) · in how many sources it repeats · existing solution or competitor. At the end, one line: how many signals from which source, which sources could not be reached. Do not invent a sentence; mark an unreachable source "could not be reached".
+
+## PHASE 2 · When the report is requested, read these 5 inputs IN ORDER (required)
+1. `you/01-profile.md` · who you are, which fields you know, what you can build, your limits, your region.
+2. `you/02-sources.md` · which queries the scan used + the decision log.
+3. `format/criteria.md` · the four criteria and the 1-5 rubric.
+4. `format/output-format.md` · the report structure.
+5. all files in `signals/` · the collected demand signals.
+
+First say "profile + sources + criteria + format + collected signals read".
+
+## Scoring steps
+1. **Signal to idea:** turn each signal into a one-sentence SaaS idea (what, for whom, solving which pain). MERGE signals describing the same pain into ONE idea.
+2. **Signal strength:** how many independent sources back it. One source once = weak; different people in different sources = strong. Explicit money language is the strongest, indirect money (lost revenue) counts less.
+3. **Score the four criteria 1-5** per `format/criteria.md`: market size, feasibility for you, competition gap, market fit for your region. A one-line reason under every score. Total out of 20. Name any competitor the scan surfaced on the competition-gap line.
+4. **Filter through the profile:** eliminate ideas outside the user's field or hitting a stated limit, or drop them to the bottom with a reason. Read feasibility against the user's own building ability.
+5. **Rank, give the top 5,** mark the top one "start here this week".
+
+## Non-negotiable output rules
+- Do NOT invent ideas or signals. Score only what is in `signals/`. With no signals, say "run the PHASE 1 scan first".
+- Do NOT inflate scores. Every score carries a one-line reason.
+- Do NOT propose a clone. Write the point of difference on the competition-gap line.
+- Flag license and regulation fields (banking, health, legal, personal data), lower feasibility, add the compliance note.
+- Region is a variable: score criterion 4 against the region written in `you/01-profile.md`, not your own assumed market.
+- Em dash appears NOWHERE. Use a period, comma, colon, or middle dot (·).
+- No motivational language, no income promises, no hype. Cool-headed analyst tone.
+
+## Where the output goes
+`outputs/YYYY-MM-DD-idea-report.md`: (a) scan summary, (b) full score table, (c) top 5 detail cards, (d) "start here this week" pick + why, (e) eliminated and waiting ones. When you decide to build or drop an idea, write it with the date under the "decision log" at the bottom of `you/02-sources.md`; later reports read it too.

@@ -1,0 +1,60 @@
+---
+alwaysApply: true
+---
+
+# Sales Page + Payment · Auto-Read Rule (Cursor)
+
+The goal: write your product or service into one file and get both the sales copy and a working single file HTML page out of it. Drag the page onto any free static host and it is live.
+
+## Where this system stands (unchangeable)
+This system builds the PAGE, it does not touch the MONEY. It sets up no payment provider, opens no account, processes no card details, and asks for no credentials. The operator pastes a ready made payment link (Stripe Payment Link, Gumroad, Lemon Squeezy, Paddle and the like) as one line, and the system wires it to the button. Email collection is the same: the operator's own form endpoint (Formspree, Google Form, Klaviyo, Mailchimp embed) gets wired to the form. The money flow and the list stay in the operator's account.
+
+## PHASE 1 · When the sales copy is requested, read these 3 inputs IN ORDER (required)
+1. `you/01-product.md` · what the product is, who for, which pain, what is included, price, proof, refund, contact, what it is NOT.
+2. `you/02-links.md` · form endpoint, payment link, button labels, colour.
+3. `format/page-format.md` · the section order and the writing rule for every section.
+
+Say "product + links + format read" in one line before producing anything.
+
+### The missing information rule (the hardest rule)
+An empty field in `you/01-product.md` is never invented.
+- No proof: the proof section does not go on the page at all. No invented review, star rating, "300 people used it" or "up 40 percent". Note it at the end of the copy instead.
+- No price: warn and ask before producing the page.
+- No refund policy: do not invent one, warn that the operator has to write it.
+- No contact: the page cannot be published, warn.
+- No information that is not in the file gets onto the page. If you are not sure, say "this information is not in the file".
+
+### The "what it is NOT" protection
+Read the "what you do not offer" lines and imply none of them on the page. If the operator does not do one to one sessions, do not write "reach me any time and we will look at it together".
+
+### Language and voice
+Plain English, second person, short sentences. No em dash. No guarantees, no certain results, no fake urgency, no motivational language, no income promises, no "it is not X, it is Y" pattern. In health, finance and legal, no outcome promise and an information only note.
+
+## PHASE 2 · Producing the HTML page
+Fill the placeholders in `format/template.html`: `{{TITLE}}`, `{{SUBTITLE}}`, `{{BRAND}}`, `{{WHO_FOR}}`, `{{PAIN}}`, `{{SOLUTION}}`, `{{INCLUDES}}`, `{{PROOF}}`, `{{PRICE}}`, `{{PRICE_NOTE}}`, `{{FAQ}}`, `{{REFUND}}`, `{{CONTACT}}`, `{{PAYMENT_LINK}}`, `{{PAYMENT_BUTTON}}`, `{{FORM_ACTION}}`, `{{FORM_TITLE}}`, `{{FORM_NOTE}}`, `{{FORM_BUTTON}}`, `{{ACCENT_COLOUR}}`.
+
+- The output must be a SINGLE file. No external CSS, JavaScript, font or image. The `<style>` stays inside the page.
+- The viewport meta tag always stays. The `prefers-color-scheme` dark and light support in the template is not deleted.
+- No payment link: do not set `href` to `#`, leave a visible warning button reading `PAYMENT_LINK_HERE`.
+- No form endpoint: leave `action="FORM_ACTION_HERE"` and put a visible "the form is not connected" note at the bottom.
+- No tracking code, no analytics, no cookies, no third party script.
+- Write it as `outputs/<slug>-sales-page.html`.
+
+## PHASE 3 · Launch checklist
+Fill `format/launch-checklist.md` in for the product and write it to `outputs/<slug>-launch-checklist.md`. The items are things the user really tests before going live. Do not say "everything is ready".
+
+## Unchangeable production rules
+- Do not invent information. No feature, number, review, customer, award or certificate that is not in the file.
+- The proof invention ban applies separately. No proof means no section.
+- No inflated promises, no guarantees, no fake urgency.
+- Never ask for credentials. Only wire a ready made link.
+- Price and currency exactly as written in the file. No invented discount, no fake struck through price.
+- No em dash anywhere: not in the copy, not in the HTML, not in the checklist.
+- Legal minimum: seller name, price, refund or cancellation terms, a way to make contact. What counts as the legal minimum differs by region, so check the local rules.
+- Accessibility minimum: readable contrast, a button at least 44 pixels tall, a `<label>` on the form field, and a correct `lang` attribute.
+
+## Where the output is written
+`outputs/<slug>-copy.md`, `outputs/<slug>-sales-page.html`, `outputs/<slug>-launch-checklist.md`.
+
+## Persistent memory
+Write the address and date of every page you put live into the "publish log" at the bottom of `you/02-links.md`, along with what happened after a title or price change.

@@ -1,0 +1,53 @@
+---
+alwaysApply: true
+---
+
+# Pricing Solver · Pricing Built on Competitor Data · Auto-Read Rule (Cursor)
+
+This system works in two phases. The goal: set the price of a product or service with data actually pulled from competitors' public pricing pages, instead of staring at the ceiling. The system takes the research off the operator, and leaves the decision with the operator.
+
+## PHASE 1 · When competitor price pulling is requested
+Read `you/01-product.md` (what is sold, the cost, the capacity, the limits) and `you/02-competitors.md` (the competitor list). Then, for every competitor:
+
+- **Pull directly:** open the URL with `WebFetch`. Pull out verbatim: tier name, price figure, currency, billing period (monthly and annual separately), what the price scales by (seat / user / volume / resource count / flat), the features included, the free tier, the trial length.
+- **No URL or a 404:** find the right page with `WebSearch` (`<name> pricing`, `site:<domain> pricing`), fetch again, and write the correct URL back into `you/02-competitors.md`.
+- **Price not on the page** (get a quote, request a demo): mark it `price not public`. Do not guess a figure. That competitor takes no part in any average, median or band.
+- **Page unreachable** (404, blocked, empty): write `no source`, with the URL tried and the error. It takes no part either.
+- **Local reference:** if the operator sells in a currency the pulled sources do not publish in, pull at least two local sources that show public prices in that currency. Figures in another currency are never used to build a band in the operator's currency.
+
+Write everything into `data/pulled-YYYY-MM-DD.md` with a source URL per row and a one line summary at the end.
+
+## PHASE 2 · When the report is requested, read these 5 inputs IN ORDER (required)
+1. `you/01-product.md` · what is sold, to whom, the cost, the capacity, what is not done.
+2. `you/02-competitors.md` · which competitors were scanned.
+3. `format/rules.md` · anti invention rules, the value axis ruler, the tier building rules.
+4. `format/output-format.md` · the structure of the report.
+5. Every file in `data/`.
+
+Say "product + competitors + rules + format + pulled data read" in one line before producing anything.
+
+## Analysis steps
+1. **Feature by tier matrix.** Row = feature, column = competitor and level. A feature not on the page gets `not stated on the page`, never a guess. Two readings under the matrix: what the sector gives at entry level, and what triggers a move to the top tier.
+2. **Value axis.** Which axis every competitor uses. Then two separate questions for the operator: which number does the customer's value grow with, which number does the operator's cost grow with. Same number means one axis. Different numbers mean the main axis sits on the value side and the second axis closes the cost side.
+3. **Three tiers.** For each: price, who it is for, what is in it, what is deliberately missing and why, and which pulled figure the price stands on.
+4. **Local market adaptation** as options, never as decisions.
+5. **Price change protocol.**
+
+## Unchangeable production rules (anti invention)
+- Do not invent prices. Only figures pulled into `data/` with a source URL. No data means "run PHASE 1 first", not an empty report.
+- Do not guess a hidden price. No "probably", no "usually in this segment".
+- No sales or revenue promises. No conversion rates, no "this share will pick the middle tier".
+- Do not invent an exchange rate. Keep currencies separate and compare through structure, unless you have a sourced and dated rate.
+- Do not write a feature into a tier that is not on the page.
+- If the page contradicts itself, write a `contradiction note` and show the arithmetic. Label anything inferred `inference (not certain)`.
+- Never say "copy it". Write which mechanism works and adapt it.
+- Do not put anything from the operator's "I do not do this" list into a tier.
+- Nothing with a marginal cost is ever unlimited. Included quantity plus overage price.
+- Flag the risky area. Automatic renewal, cancellation rights and price change notices need legal confirmation, and the rules differ by region.
+- No em dash anywhere. No motivational language, no hype.
+
+## Where the output is written
+`outputs/YYYY-MM-DD-pricing-report.md`, containing in order: data summary and source status, the feature by tier matrix, the value axis and the reason for the choice, the three tiers plus what was deliberately left out, the local market adaptation options, the price change protocol, and what the report does not know.
+
+## Persistent memory
+New competitors and corrected URLs go into `you/02-competitors.md`. Every price move goes into the "price log" at the bottom of the same file with its date, reason and result. Old `data/` files are never deleted, so the competitors' price history builds up too.

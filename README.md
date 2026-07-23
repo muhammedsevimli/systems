@@ -17,6 +17,10 @@ An open collection of real systems Muhammed Sevimli builds with AI. Each system 
 | Client Finder · Prospect Finding + First Message | Write your niche, the system builds Meta Ad Library links. Paste the brands running ads in that niche, and it ranks the prospects by budget signal and the weak point of their ad, then writes each one a tailored first message built on a specific detail from their own ad. | [client-finder/](client-finder/) |
 | Trend Radar · Rising Content Angles in Your Niche | Write your niche, and the system pulls the top rising titles of the last week from that niche's Reddit communities via public RSS on its own. It extracts the repeating hook patterns, sorts them hottest to coldest, and writes a "make this week" brief in your brand voice (via frequency + feed order, without inventing a vote count). | [trend-radar/](trend-radar/) |
 | Google Ads Auditor · Wasted Ad Spend | Export your Google Ads report once, and the system finds which searches eat money without converting, from your own data. It calculates the total wasted amount line by line, extracts the missing negative keywords, flags the campaign that misallocates the budget, and gives a "fix this week" list (only from the data, no invented multiplier). | [google-ads-auditor/](google-ads-auditor/) |
+| Idea Miner · SaaS Idea Scorer | Write the field you care about, and the system scans Hacker News, Reddit, and web and community forums on its own. It turns the real demand where people say "I wish there was" and "I would pay for this" into ideas, scores them on four criteria (market size, feasibility, competition gap, market fit for your region), and ranks the 5 best ideas you could build this week with the reasoning behind each. | [idea-miner/](idea-miner/) |
+| Product Plan · Build Plan From a URL | Give the address of a product you like, and the system browses that site itself (home page, features, pricing, docs), takes its logic apart, and writes three files adapted to your business: the product plan, the data schema, and a Claude Code prompt set you paste in order. Not a clone factory; it also writes which feature does not belong in your first version, and why. | [product-plan/](product-plan/) |
+| Sales Page + Payment · Single File Page Builder | Write your product into one file and the system writes the sales copy, produces a working single file HTML page, wires in your email form and your ready made payment link, and hands you a launch checklist. If you gave no proof it puts no proof section on the page, and it invents no review. | [sales-page/](sales-page/) |
+| Pricing Solver · Pricing Built on Competitor Data | Write your product and your competitors, and the system opens the competitors' public pricing pages itself, pulls the tiers and figures with their sources, builds a feature by tier matrix, picks the value axis with a reason, and proposes three justified tiers. For a competitor who hides their price it invents no figure and keeps them out of every average. | [pricing-solver/](pricing-solver/) |
 
 More systems will be added over time. Each system has its own README that explains setup.
 
@@ -41,6 +45,10 @@ npx degit muhammedsevimli/systems/ad-concept-factory ad-concept-factory
 npx degit muhammedsevimli/systems/client-finder client-finder
 npx degit muhammedsevimli/systems/trend-radar trend-radar
 npx degit muhammedsevimli/systems/google-ads-auditor google-ads-auditor
+npx degit muhammedsevimli/systems/idea-miner idea-miner
+npx degit muhammedsevimli/systems/product-plan product-plan
+npx degit muhammedsevimli/systems/sales-page sales-page
+npx degit muhammedsevimli/systems/pricing-solver pricing-solver
 ```
 
 Or clone the whole repo, or download it with the green **Code → Download ZIP** and use any folder you want.

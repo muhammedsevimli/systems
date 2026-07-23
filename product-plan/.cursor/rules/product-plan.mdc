@@ -1,0 +1,57 @@
+---
+alwaysApply: true
+---
+
+# Product Plan · Build Plan From a URL · Auto-Read Rule (Cursor)
+
+This system works in two phases. The goal: give one URL and get the logic of that product pulled apart and turned into a plan adapted to your niche, buildable in order. Three files come out: the product plan, the data schema, the prompt set. This is not a clone factory.
+
+## Where this system stands (unchangeable)
+- The system never says "build the same thing". The output is always "the version for your niche, the one you can build".
+- Brand name, logo, colour system, one to one interface design, page copy, icon set, copyrighted content and licensed source code are NOT COPIED. They go in a separate "do not copy" list.
+- The only thing that can be lifted is a product's logic: which job it solves in which order, which objects it keeps, how it walks the user to first value, what it charges by.
+- The target's audience and your audience are not the same. Read `you/01-profile.md` and reorder every feature for your niche.
+- If the target carries a license, write the license name verbatim and add the note: no taking the code, only pulling out the logic.
+
+## PHASE 1 · When site reading is requested
+Read `you/01-profile.md` and `you/02-target.md`. Then browse the target URL yourself, copying nothing:
+
+- **Home page:** fetch the target URL with `WebFetch`. Pull out what the product does in one sentence, the audience wording written on the page, every feature named on the page.
+- **Features page:** try `/features`, `/product`, `/platform` and widen the inventory. Write which page each feature appeared on.
+- **Pricing page:** try `/pricing`, `/plans`, or the pricing section on the home page. Pull out what the price scales by (users, usage volume, number of sites, feature bundle), the tiers and the numbers written LITERALLY, the free trial, what is common to every plan.
+- **Documentation:** try `/docs`, `/help`, `/support`, `/api`. Doc headings are the most honest source for the data model. Fetch the metrics or definitions page separately if there is one.
+- **If a gap remains:** run a web search for "<product name> pricing" / "<product name> features" and take only what appears LITERALLY.
+- **License:** if the product is open source or a license appears, write the license name verbatim.
+
+Write every line into `breakdown/breakdown-YYYY-MM-DD.md` in the structure of `format/product-breakdown.md`, with a source URL on every line. Mark an unreachable page "could not be reached" with the reason, and invent nothing that would have come from it. One summary line at the end.
+
+## PHASE 2 · When the plan is requested, read these 5 inputs IN ORDER (required)
+1. `you/01-profile.md` · who you are, who you serve, what you can build, your limits.
+2. `you/02-target.md` · the target URL and what you are curious about.
+3. `format/rules.md` · the core / decoration test, the copy protection, the anti invention rules.
+4. `format/plan-format.md` · the structure of the three outputs.
+5. The most recent file in `breakdown/`.
+
+Say "profile + target + rules + format + breakdown read" in one line before producing anything.
+
+## PHASE 2 steps
+1. **Buckets.** Put every feature through the three questions in `format/rules.md` and drop it into CORE (v1), SUPPORT (v1.5), DECORATION (later) or STAY OUT. One sentence reason per line. CORE is 7 items at most.
+2. **Niche adaptation table.** Column (a) exists in the target, pointless in your niche. Column (b) missing from the target, mandatory in your niche, pulled from the profile and your local market reality. Column (b) is never left empty.
+3. **User flow.** Sign up, first value moment, reason to come back. Count the steps to first value in the target and in your version.
+4. **Data schema.** Which objects are kept, with the evidence for each. Then the simplified v1 schema, 6 tables at most.
+5. **Pricing logic.** What the price scales by, whether that unit works in your niche, and the unit that fits you if it does not.
+6. **Prompt set.** 6 to 10 prompts, each doing one job, each chained to the previous output, each ending with an acceptance line.
+7. **Three files** into `outputs/`: `YYYY-MM-DD-product-plan.md`, `YYYY-MM-DD-data-schema.md`, `YYYY-MM-DD-prompts.md`.
+
+## Unchangeable production rules
+- Do not invent features. Only what was actually pulled and carries a source link.
+- Do not invent pricing. No page or no figure means "no pricing figure available".
+- The schema is an inference, not the real database. Say so at the top and give the evidence per table.
+- If you are not sure, say "unclear" and collect it under its own heading.
+- Copy protection: a separate "do not copy" list, and never the sentences "build the same thing", "clone it", "make it one to one".
+- Differentiation is mandatory. "What are you doing differently" cannot be empty, and "better design" does not count.
+- Flag the risky part (payments, personal data, health, legal, finance) and take it out of v1.
+- No em dash anywhere. No motivational language, no income promises, no hype.
+
+## Persistent memory
+After every study, add one line with the date to the "studied products log" at the bottom of `you/02-target.md`: which product, what you learned, which idea you took, what you did not take. From the second product on, read the log too and show the repeating patterns under a separate heading.
