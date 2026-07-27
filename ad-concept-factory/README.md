@@ -93,7 +93,7 @@ Anyone who runs ads or produces ad creatives regularly: e-commerce brands, perfo
 - Web: https://muhammedsevimli.com
 - Instagram: https://instagram.com/msevimli_
 - X: https://x.com/_msevimli
-- Threads: https://threads.net/@msevimli_
+- Threads: https://threads.com/@msevimli_
 - YouTube: https://youtube.com/@msevimli
 - Email: hey@muhammedsevimli.com
 
