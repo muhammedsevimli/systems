@@ -1,0 +1,69 @@
+{
+ "sizes": [
+  "14px",
+  "16px",
+  "20px",
+  "28px",
+  "44px"
+ ],
+ "radii": [
+  "8px",
+  "12px"
+ ],
+ "shadowCount": 1,
+ "shadows": [
+  "rgba(0, 0, 0, 0.06) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 8px 24px 0px"
+ ],
+ "picks": [
+  {
+   "sel": "h1",
+   "fontSize": "44px",
+   "lineHeight": "52.8px",
+   "fontWeight": "700",
+   "color": "rgb(24, 24, 27)",
+   "background": "rgba(0, 0, 0, 0)",
+   "radius": "0px",
+   "shadow": "none",
+   "border": "0px",
+   "w": 1072,
+   "h": 53,
+   "padding": "0px",
+   "chars": 39
+  },
+  {
+   "sel": ".hero p",
+   "fontSize": "16px",
+   "lineHeight": "25.6px",
+   "fontWeight": "400",
+   "color": "rgb(82, 82, 91)",
+   "background": "rgba(0, 0, 0, 0)",
+   "radius": "0px",
+   "shadow": "none",
+   "border": "0px",
+   "w": 638,
+   "h": 77,
+   "padding": "0px",
+   "chars": 231
+  },
+  null,
+  null,
+  null,
+  null,
+  null,
+  {
+   "sel": "footer",
+   "fontSize": "16px",
+   "lineHeight": "25.6px",
+   "fontWeight": "400",
+   "color": "rgb(24, 24, 27)",
+   "background": "rgba(0, 0, 0, 0)",
+   "radius": "0px",
+   "shadow": "none",
+   "border": "1px 0px 0px",
+   "w": 1280,
+   "h": 87,
+   "padding": "0px",
+   "chars": 40
+  }
+ ]
+}

@@ -1,0 +1,44 @@
+---
+description: Design Auditor · eight heading design audit from a single screenshot
+alwaysApply: true
+---
+
+# Design Auditor · Automatic Reading Rule
+
+This rule always applies while working in this folder. The full version lives in `CLAUDE.md` and `AGENTS.md`.
+
+Purpose: measure why the page the user built looks cheap. The only input is a screenshot, code is never requested.
+
+## Stance (fixed)
+The page is not redesigned. What is wrong gets measured, why it is wrong gets said, how to fix it gets written. The call stays with the user.
+
+## When an audit is requested, read in order
+1. `you/01-brand.md`
+2. `format/measures.md`
+3. `format/report-format.md`
+4. Every image in `screens/`
+
+Do not produce before reading. Start by saying "brand + measures + format + screens read".
+
+## The eight headings (order is fixed)
+1. Type hierarchy
+2. Line length and line height
+3. Spacing rhythm
+4. Color and contrast
+5. Shadow, border and corner radius
+6. Buttons and tap targets
+7. Alignment and grid
+8. Image and icon consistency
+
+Three lines per heading: what it is now, what it should be, why. Go through all eight; write "clean" where there is no problem.
+
+## Fixed rules
+- Never write what you did not measure, put it in the "cannot be measured from this image" section.
+- Pixel values are estimates, mark them as such.
+- No compliments, every sentence rests on a measurement.
+- Do not suggest changing copy, section order or concept.
+- Never touch brand colors or typefaces (when `you/01-brand.md` is filled in).
+- No em dashes.
+
+## Output
+`outputs/YYYY-MM-DD-<page-name>-audit.md`. Sections: inventory, eight heading table, findings ranked by severity, pasteable fix instruction, what cannot be measured.

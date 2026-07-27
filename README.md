@@ -21,6 +21,7 @@ An open collection of real systems Muhammed Sevimli builds with AI. Each system 
 | Product Plan · Build Plan From a URL | Give the address of a product you like, and the system browses that site itself (home page, features, pricing, docs), takes its logic apart, and writes three files adapted to your business: the product plan, the data schema, and a Claude Code prompt set you paste in order. Not a clone factory; it also writes which feature does not belong in your first version, and why. | [product-plan/](product-plan/) |
 | Sales Page + Payment · Single File Page Builder | Write your product into one file and the system writes the sales copy, produces a working single file HTML page, wires in your email form and your ready made payment link, and hands you a launch checklist. If you gave no proof it puts no proof section on the page, and it invents no review. | [sales-page/](sales-page/) |
 | Pricing Solver · Pricing Built on Competitor Data | Write your product and your competitors, and the system opens the competitors' public pricing pages itself, pulls the tiers and figures with their sources, builds a feature by tier matrix, picks the value axis with a reason, and proposes three justified tiers. For a competitor who hides their price it invents no figure and keeps them out of every average. | [pricing-solver/](pricing-solver/) |
+| Design Auditor · Why Your Page Looks Cheap | Give it a screenshot of your page and the system measures eight headings: type hierarchy, line length, spacing rhythm, color contrast, shadows, tap targets, alignment and icon consistency. Every finding gets "what it is now, what it should be, why", and the fix comes out as a single instruction block you can paste into whatever built the page. It never asks for code. | [design-auditor/](design-auditor/) |
 
 More systems will be added over time. Each system has its own README that explains setup.
 
@@ -49,6 +50,7 @@ npx degit muhammedsevimli/systems/idea-miner idea-miner
 npx degit muhammedsevimli/systems/product-plan product-plan
 npx degit muhammedsevimli/systems/sales-page sales-page
 npx degit muhammedsevimli/systems/pricing-solver pricing-solver
+npx degit muhammedsevimli/systems/design-auditor design-auditor
 ```
 
 Or clone the whole repo, or download it with the green **Code → Download ZIP** and use any folder you want.
