@@ -1,6 +1,6 @@
 # Cost
 
-Five agents run at once and each one carries its own context. You are producing five answers to a single question, plus a second round on top. This does not cost what asking one agent costs.
+Five agents run at once and each one carries its own context. You are producing five answers to a single question, plus a second round on top. The cost runs to roughly five times what one agent costs.
 
 ## The real run
 
