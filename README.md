@@ -22,6 +22,7 @@ An open collection of real systems Muhammed Sevimli builds with AI. Each system 
 | Sales Page + Payment · Single File Page Builder | Write your product into one file and the system writes the sales copy, produces a working single file HTML page, wires in your email form and your ready made payment link, and hands you a launch checklist. If you gave no proof it puts no proof section on the page, and it invents no review. | [sales-page/](sales-page/) |
 | Pricing Solver · Pricing Built on Competitor Data | Write your product and your competitors, and the system opens the competitors' public pricing pages itself, pulls the tiers and figures with their sources, builds a feature by tier matrix, picks the value axis with a reason, and proposes three justified tiers. For a competitor who hides their price it invents no figure and keeps them out of every average. | [pricing-solver/](pricing-solver/) |
 | Design Auditor · Why Your Page Looks Cheap | Give it a screenshot of your page and the system measures eight headings: type hierarchy, line length, spacing rhythm, color contrast, shadows, tap targets, alignment and icon consistency. Every finding gets "what it is now, what it should be, why", and the fix comes out as a single instruction block you can paste into whatever built the page. It never asks for code. | [design-auditor/](design-auditor/) |
+| Agent Team | Make five agents argue about one question. Four roles each defend a theory, the Mathematician defends nothing and tests every theory against the numbers in your data folder. A role whose theory gets cut withdraws in round two, and the theory left standing is your answer. No role may use a number that is not in the data folder. | [agent-team/](agent-team/) |
 
 More systems will be added over time. Each system has its own README that explains setup.
 
@@ -51,6 +52,7 @@ npx degit muhammedsevimli/systems/product-plan product-plan
 npx degit muhammedsevimli/systems/sales-page sales-page
 npx degit muhammedsevimli/systems/pricing-solver pricing-solver
 npx degit muhammedsevimli/systems/design-auditor design-auditor
+npx degit muhammedsevimli/systems/agent-team agent-team
 ```
 
 Or clone the whole repo, or download it with the green **Code → Download ZIP** and use any folder you want.

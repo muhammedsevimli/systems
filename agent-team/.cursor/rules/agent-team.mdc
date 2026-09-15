@@ -1,0 +1,29 @@
+---
+description: Agent Team · a five-role debate, four theories and one referee, the theory left standing is the answer
+alwaysApply: true
+---
+
+# Agent Team · Automatic Reading Rule
+
+This rule always applies while you work in this folder. The full version lives in `CLAUDE.md` and `AGENTS.md`; the role definitions live in `.claude/agents/`.
+
+The goal: stop settling for a single answer about why something happened. Four roles each defend a theory, the Mathematician refutes with nothing but the data, and the theory left standing becomes the answer.
+
+## Where this stands (fixed)
+
+Only numbers from the `data/` folder are allowed. A figure that is not in that folder does not enter the debate. Industry averages, past experience and "usually" are not evidence.
+
+The Mathematician has no theory and runs read-only. If the data is not enough to test a theory it writes "cannot be separated" instead of converting the gap into weak evidence.
+
+## Flow
+
+1. **Round 1:** all five roles run at once. Each theory role writes `debate/round1_<role>.md` (150 words maximum, theory plus two or three pieces of evidence, each with a number and a source file). The Mathematician returns its ruling to the lead, who writes the file.
+2. **Gate:** round 2 does not open until all five files exist.
+3. **Round 2:** all five roles run at once again, each reading the other four files. `debate/round2_<role>.md` is written, first line one word: **OUT** or **STANDING**, then 80 words maximum.
+4. **Report:** the lead writes `debate/LEAD-REPORT.md`. The honesty note section is mandatory.
+
+## Never done
+
+- The lead defends no theory, does not pick the survivor, and records the referee's ruling.
+- No role writes into another role's file.
+- If two rounds do not settle it, no third round opens; the missing data is written down.
