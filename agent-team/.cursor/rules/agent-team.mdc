@@ -17,10 +17,11 @@ The Mathematician has no theory and runs read-only. If the data is not enough to
 
 ## Flow
 
+0. **Intake:** if `data/` holds nothing but `SAMPLE-DATA.md`, do not make the user set anything up. Ask for the question and the numbers in chat, write `data/DATA.md` yourself, have them confirm what you wrote, and propose the four theories yourself.
 1. **Round 1:** all five roles run at once. Each theory role writes `debate/round1_<role>.md` (150 words maximum, theory plus two or three pieces of evidence, each with a number and a source file). The Mathematician returns its ruling to the lead, who writes the file.
 2. **Gate:** round 2 does not open until all five files exist.
 3. **Round 2:** all five roles run at once again, each reading the other four files. `debate/round2_<role>.md` is written, first line one word: **OUT** or **STANDING**, then 80 words maximum.
-4. **Report:** the lead writes `debate/LEAD-REPORT.md`. The honesty note section is mandatory.
+4. **Report:** the lead writes `debate/LEAD-REPORT.md` and then summarizes it in chat. The honesty note section is mandatory.
 
 ## Never done
 

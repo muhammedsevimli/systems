@@ -1,6 +1,6 @@
 # Sample data
 
-> This file is fictional. It belongs to no real account. Its job is to show the data format and let you try the system. When you add your own data, delete this file or put yours next to it.
+> This file is fictional and exists only as a format example. In the main flow the tool writes the data file itself, so you never have to touch this one. It belongs to no real account.
 >
 > Fictional scenario: a small workshop that sells handmade candles publishes a short video series. The account has **8,400 followers**. The three episodes below belong to the same series and were posted on the same account.
 

@@ -17,7 +17,7 @@ The Mathematician has no theory. Do not change it.
 
 ## Data fields the Mathematician will look at
 
-Put these in `data/`. For anything missing, write "no data" explicitly so the referee marks the gap as a gap.
+The lead asks you for these in chat and writes `data/DATA.md` itself. Anything you do not have is written as "no data", so the referee marks the gap as a gap.
 
 **Funnel numbers**
 - Page views, unique visitors
