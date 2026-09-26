@@ -11,24 +11,36 @@ Your owner types one of these in the chat (or `tools/daily_run.py` sends "daily 
 | `daily run` | Runs the daily flow below from start to finish. |
 | `scan` | Steps 1-2 only: find listings, score them, write them to the table. Does not prepare applications. |
 | `prepare <listing link>` | Step 3 for a single listing: match, tailored CV, cover letter, answers. Does not submit. |
+| `setup` | First-time setup. Asks your owner for their CV, converts it into `you/CV.md`, asks the target questions in chat and writes `you/TARGET.md`, installs the scheduler. Your owner never fills in a file by hand. |
 | `submit <folder name>` | Fills in a ready application folder on LinkedIn and submits it if `submit: yes`. |
 | `rehearse <folder name>` | Produces 10 interview questions and answer outlines from that listing and the CV (`rehearsal.md`). |
 | `status` | Gives a summary of `applications.csv` in the chat: pending, submitted, replies received. |
 
 ## Files
 
-- `you/CV.md` your owner's CV. The single source of truth. The experience, dates, titles and numbers in it are NEVER CHANGED, only reordered and emphasized.
-- `you/TARGET.md` target roles, location, work mode, salary floor, red lines, threshold score, daily cap, the `submit` switch, and standard answers to form questions.
+- `you/CV.md` your owner's CV (you write it during `setup`). The single source of truth. The experience, dates, titles and numbers in it are NEVER CHANGED, only reordered and emphasized.
+- `you/TARGET.md` (you write it during `setup` from the chat answers) target roles, location, work mode, salary floor, red lines, threshold score, daily cap, the `submit` switch, and standard answers to form questions.
 - `applications.csv` tracking table. Columns: `date,job_id,company,role,location,score,status,folder,link,note`. Status values: `rejected`, `candidate`, `ready`, `preview`, `submitted`, `external`, `question-pending`, `reply`, `interview`, `declined`.
 - `applications/<YYYY-MM-DD>-<company>-<role>/` the folder for each application.
 - `reports/<YYYY-MM-DD>.md` the day's report. `reports/log-*.txt` raw run log.
 - `tools/cv_pdf.py` turns the tailored CV into a PDF. `tools/setup.py` installs the daily scheduler. `tools/daily_run.py` is the runner the scheduler calls.
 
+## First-time setup (`setup`)
+
+When your owner pulls this folder from GitHub, `you/CV.md` is the fictional Elif Aydın and `you/TARGET.md` says `demo: yes`. Your owner does not open or fill in files; you collect everything in chat. The first time your owner talks to you in this folder (whatever they type), if the CV is still the demo person, offer the `setup` flow first.
+
+1. Ask for their CV: a PDF, Word file, plain text or LinkedIn's "Save to PDF" export. If they give a path, read it; if they paste text, take that. Convert it into the `you/CV.md` format (name, contact, summary, experience entries with dates and companies, education, tools, languages). Add nothing, drop nothing; ask about anything unclear.
+2. Ask the target questions ONE AT A TIME and write `you/TARGET.md` from the answers: roles they want (2-4 titles), location, work mode (remote / hybrid / on-site), salary floor, red lines (industries, company types, internships/freelance they do not want), scheduler time, the submit switch (default `submit: no`, `demo: no`). Derive the standard form answers (years of experience, notice period, work permit, language levels, residence) from the CV and ask about the ones you cannot derive. Summarize the file and get their OK.
+3. Install the scheduler with `py tools/setup.py` and tell them the result (which time, which mechanism). Remind them in one sentence that the computer has to be on at that time.
+4. Suggest `scan` for the first run: it only searches and scores, no folders. If they like the table, they type `daily run`.
+
+If your owner later says "update my CV", "change the salary" or "add this industry", you change the file the same way; you never tell them a file name, a line or a format.
+
 ## Daily flow
 
 ### 0. Preparation
 1. Read `you/CV.md`, `you/TARGET.md` and `applications.csv`. Get today's date.
-2. Demo check. If `you/CV.md` is the fictional person that ships with the setup (Elif Aydın, `example.com` addresses) and `you/TARGET.md` does NOT contain `demo: yes`, end the run here; write "CV is the demo person, fill in you/CV.md and you/TARGET.md first" to the report. If `demo: yes` is set, DEMO MODE: every step runs, in step 4 the form is filled up to the "Review" screen, then the draft is DISCARDED; nothing is submitted, whatever `submit` says. Add "DEMO" to the report title. In the contact step the account's own details appear; it is normal that they do not match the demo person. NO CV IS UPLOADED IN DEMO MODE: a resume uploaded to LinkedIn stays permanently in the account's library, and a fictional CV must not pile up in a real account; leave the account's own CV that is already selected in the form as it is, and the tailored PDF stays in the folder.
+2. Demo check. If `you/CV.md` is the fictional person that ships with the setup (Elif Aydın, `example.com` addresses) and `you/TARGET.md` does NOT contain `demo: yes`, end the run here; write "CV is the demo person, run `setup` first" in the report. If `demo: yes` is set, DEMO MODE: every step runs, in step 4 the form is filled up to the "Review" screen, then the draft is DISCARDED; nothing is submitted, whatever `submit` says. Add "DEMO" to the report title. In the contact step the account's own details appear; it is normal that they do not match the demo person. NO CV IS UPLOADED IN DEMO MODE: a resume uploaded to LinkedIn stays permanently in the account's library, and a fictional CV must not pile up in a real account; leave the account's own CV that is already selected in the form as it is, and the tailored PDF stays in the folder.
 3. Extract the `job_id` list from `applications.csv`. These listings are never looked at again.
 4. Load the Chrome tools (`mcp__claude-in-chrome__*` via `ToolSearch`: tabs_context_mcp, navigate, get_page_text, read_page, find, computer, form_input, file_upload, tabs_close_mcp). Get a tab with `tabs_context_mcp {createIfEmpty:true}`.
 5. Open `https://www.linkedin.com/jobs/`. If there is no profile menu on the page, the session is logged out: STOP, write "session logged out, sign in to LinkedIn in the browser" to the report, and do not try anything. Do not ask for a password, do not type a password.

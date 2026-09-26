@@ -6,6 +6,7 @@ Open Claude Code in this folder and type:
 
 | Command | What it does |
 |---|---|
+| `setup` | First-time setup: give your CV, answer the questions in chat; Claude writes `you/CV.md`, `you/TARGET.md` and installs the scheduler. |
 | `daily run` | Full flow: search, score, prepare, fill in the form, report. The scheduler calls this too. |
 | `scan` | Search and score only. Fills in the table, opens no folders. Try this on day one. |
 | `prepare https://www.linkedin.com/jobs/view/123456/` | For a single listing: folder, match, tailored CV, cover letter, answers. |
@@ -64,12 +65,12 @@ The runner uses `claude -p --chrome --permission-mode bypassPermissions`: nobody
 
 ## Demo mode
 
-The `you/CV.md` that ships with the setup is the fictional Elif Aydın, and `you/TARGET.md` says `demo: yes`. With this setting the agent scans real listings, scores them, tailors the CV, fills in the form up to the "Review" step and discards the draft. Nothing is submitted. Run it once to see the system, then enter your own CV and set `demo: no`. While the CV is the demo person and `demo: yes` is missing, the agent does not run at all.
+The `you/CV.md` that ships with the setup is the fictional Elif Aydın, and `you/TARGET.md` says `demo: yes`. With this setting the agent scans real listings, scores them, tailors the CV, fills in the form up to the "Review" step and discards the draft. Nothing is submitted. Run it once to see the system, then type `setup`: you hand over your CV, Claude writes the files and sets `demo: no`. While the CV is the demo person and `demo: yes` is missing, the agent does not run at all.
 
 ## Common snags
 
 - **"session logged out" report:** sign in to linkedin.com in Chrome and start the run again. The agent never asks for or types a password.
 - **No PDF came out:** the Chrome or Edge path was not found. Put the browser's full path in the `CHROME_PATH` environment variable.
-- **A form stayed at `question-pending`:** find the "ASK OWNER" line in the folder's `answers.md`, add the answer to the standard answers in `you/TARGET.md`, then type `submit <folder>`.
+- **A form stayed at `question-pending`:** find the "ASK OWNER" line in the folder's `answers.md`, say the answer in chat (Claude adds it to the standard answers), then type `submit <folder>`.
 - **The same listing keeps coming back:** check whether its `job_id` is in `applications.csv`. If you delete the table by hand, the agent thinks the listing is new.
 - **LinkedIn security warning:** the agent ends the run. Take a day or two off and lower the cap.
