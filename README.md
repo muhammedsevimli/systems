@@ -23,6 +23,8 @@ An open collection of real systems Muhammed Sevimli builds with AI. Each system 
 | Pricing Solver · Pricing Built on Competitor Data | Write your product and your competitors, and the system opens the competitors' public pricing pages itself, pulls the tiers and figures with their sources, builds a feature by tier matrix, picks the value axis with a reason, and proposes three justified tiers. For a competitor who hides their price it invents no figure and keeps them out of every average. | [pricing-solver/](pricing-solver/) |
 | Design Auditor · Why Your Page Looks Cheap | Give it a screenshot of your page and the system measures eight headings: type hierarchy, line length, spacing rhythm, color contrast, shadows, tap targets, alignment and icon consistency. Every finding gets "what it is now, what it should be, why", and the fix comes out as a single instruction block you can paste into whatever built the page. It never asks for code. | [design-auditor/](design-auditor/) |
 | Agent Team | Make five agents argue about one question. Four roles each defend a theory, the Mathematician defends nothing and tests every theory against the numbers in your data folder. A role whose theory gets cut withdraws in round two, and the theory left standing is your answer. No role may use a number that is not in the data folder. | [agent-team/](agent-team/) |
+| Job Application Agent | Every morning it finds and scores matching LinkedIn listings, reorders your CV for each listing, writes the cover letter and the form answers, and fills in the Easy Apply form up to the last step. Whether it presses submit is your call, with a single line. It never adds experience, tools or dates your CV does not have. | [job-application-agent/](job-application-agent/) |
+| CV Screening Agent | It reads the CVs sent to your listing, compares each one with the listing and scores it out of 100, rejects anyone who crosses your red lines with the reason written down, and builds the shortlist. It drafts interview invites and polite rejection emails. It never scores age, gender, marital status or photo, and the CVs never leave your computer. There is also a `screen me` mode for job seekers: it shows the score the hiring side would see, before you apply. | [cv-screening-agent/](cv-screening-agent/) |
 
 More systems will be added over time. Each system has its own README that explains setup.
 
@@ -53,6 +55,8 @@ npx degit muhammedsevimli/systems/sales-page sales-page
 npx degit muhammedsevimli/systems/pricing-solver pricing-solver
 npx degit muhammedsevimli/systems/design-auditor design-auditor
 npx degit muhammedsevimli/systems/agent-team agent-team
+npx degit muhammedsevimli/systems/job-application-agent job-application-agent
+npx degit muhammedsevimli/systems/cv-screening-agent cv-screening-agent
 ```
 
 Or clone the whole repo, or download it with the green **Code → Download ZIP** and use any folder you want.

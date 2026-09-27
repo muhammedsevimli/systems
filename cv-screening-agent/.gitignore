@@ -1,0 +1,24 @@
+.env
+.env.*
+.secrets/
+*.key
+*.pem
+*token*
+*secret*
+*credential*
+node_modules/
+__pycache__/
+.DS_Store
+
+# Candidates' personal data (privacy): NEVER goes into the repo
+candidates.csv
+candidates/inbox/*
+!candidates/inbox/.gitkeep
+reports/*
+!reports/.gitkeep
+invites/*
+!invites/.gitkeep
+rejections/*
+!rejections/.gitkeep
+screen-me/*
+!screen-me/.gitkeep

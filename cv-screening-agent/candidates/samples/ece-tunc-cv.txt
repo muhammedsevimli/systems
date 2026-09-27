@@ -1,0 +1,25 @@
+ECE TUNÇ
+Marketing Specialist (B2B)
+Istanbul · ece.tunc@example.com · 0555 000 00 04
+
+(Fictional sample CV. Used in the CV Screening Agent demo; it does not belong to a real person.)
+
+SUMMARY
+For almost six years I have been running demand generation and marketing automation at a software company.
+
+EXPERIENCE
+Tepe Yazılım · Marketing Specialist · Istanbul · November 2020 - present
+- I manage demo request campaigns in Google Ads and LinkedIn Ads; the cost per qualified lead went down by 30 percent.
+- I have been running retargeting campaigns in Meta Ads since 2023.
+- I built lead nurturing email flows in HubSpot; conversion to a demo booking went from 4 percent to 7 percent.
+- I did the GA4 and Google Tag Manager setup.
+- I set up A/B tests on the website's landing pages.
+
+EDUCATION
+Marmara University · Public Relations and Advertising · 2016 - 2020
+
+TOOLS
+Google Ads, LinkedIn Ads, Meta Ads, HubSpot, GA4, Google Tag Manager, Excel
+
+LANGUAGES
+Turkish (native), English (C1)
