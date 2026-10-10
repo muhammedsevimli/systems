@@ -1,0 +1,3 @@
+# Keep LF line endings so the log script runs on every computer
+*.sh text eol=lf
+*.jsonl text eol=lf
