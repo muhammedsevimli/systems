@@ -103,6 +103,55 @@ The auditor's desk was opened from `8964f89`, so it saw the writer's merged text
 
 **Result:** the `hire` flow and its fallback worked. In interactive use Claude Code may ask for permission to write into that folder; in this non-interactive test nobody was there to ask, so the write was refused. **Fix:** CLAUDE.md now says "tell your owner to approve if a permission prompt comes up; without permission, write it under `company/staff-drafts/` and use the general worker route". **Not tested:** whether a worker whose file is written under `.claude/agents/` can be opened directly by name in the same session.
 
+## Lookout run · competitor radar (11 October 2026)
+
+**Setup:** the package was copied into an empty folder and made a repository, and the demo company (Urla Table) was used. The CEO was again a separate `claude -p` session. These runs, too, used the Turkish version (`gozcu`, `bin/gozcu_tara.py`); the English scanner `bin/lookout_scan.py` was tested on its own (see the end of this section). Permissions: file edits, git, the log script and Python (`python`, `python3`, `py`). The sources were real and public: the YouTube feeds of 3 food channels (Yemek.com, Nefis Yemek Tarifleri, Refika's Kitchen), the Yemek.com site, Google News searches for "Urla restoran" and "Urla gastronomi", Reddit r/izmir. No key was used.
+
+| | 1. `watch my competitors` | 2. `radar` (with the shift script) | 3. add two sources + `radar` | 4. add a manual link + `radar` |
+|---|---|---|---|---|
+| How it was given | Answers to the five questions in the message | `bin/radar_vardiya.cmd` run by hand | "add these to the list, then radar" | "add this link with an 'opportunity' note, then radar" |
+| Time | 3 min 32 s | 3 min 28 s | 3 min 25 s | 6 min 23 s |
+| Sources (read / total) | 7 / 7 | 7 / 7 | 9 / 9 | 10 / 10 |
+| Items pulled (last 4 days) | 30 | 30 | 49 | 50 |
+| Workers | lookout | lookout | lookout | lookout, auditor |
+| Opportunity drafts | 0 | 0 | 0 | 1 (Instagram), auditor PASS, 4 style and timing findings |
+| Report length | 63 lines, 1,023 words | 66 lines, 1,231 words | 72 lines, 1,308 words | 88 lines, 1,359 words |
+| Log lines | 8 | 7 | 7 | 13 |
+| Desks and merges | 1 / 1, no conflict | 1 / 1 | 1 / 1 | 2 / 2 |
+| Tokens (session record, CEO and workers) | 1,489,570 | 1,216,553 | 1,516,584 | 2,091,720 |
+| Tokens (seen by the CEO) | about 61k | about 68k | not measured | not measured |
+| Amount at list price | $1.46 | not printed (the shift script prints no amount) | $1.58 | $2.20 |
+| Sent out | 0 | 0 | 0 | 0 |
+
+The scanner itself took 3.4 seconds for 7 sources. The rest of the run time is the lookout writing the report, plus desks and merges.
+
+**What worked:**
+- Finding the `channelId` from a YouTube channel URL: all 3 channels were found and their feed addresses were written to the list.
+- Traction data: on YouTube items, views, likes, views per hour and the ratio to the channel median went into the report as they were. On news, site and Reddit items the lookout wrote "no view data" every time and made up no numbers.
+- Growth between two scans: in run 2 the growth of every video since the previous scan was calculated (for example, a short went from 4,500 to 4,816 in 5 minutes). The gap was under 30 minutes, so hourly growth was not calculated; the lookout said so in the report.
+- Opportunity rule: in run 3 one CZN Burak video was fresh and 2.06 times the channel median, but had nothing to do with food. The lookout did not count it, writing "gaining but does not fit us". In run 4 the news link the owner added with an "opportunity" note (a grape harvest festival in Izmir, in 4 different outlets) was read and the lookout wrote an Instagram draft for Saturday breakfast. Menu, phone and the Urla vineyard link were not on the card, so they became `[ASK THE OWNER]`. The auditor audited only the draft, and its verdict went to the top of the approval file.
+- Shift: `bin/radar_vardiya.cmd` was run by hand and ran from start to finish with the narrow permissions (file edits, git, log, Python). The Task Scheduler line (`schtasks /create ... /d MON,THU /st 08:30`) was created, `schtasks /query` showed "Days: MON, THU, Next Run Time: 12.10.2026 08:30", and then it was deleted.
+- Manual links: the text and date of an X post and the caption of a TikTok video were read without a key. An Instagram link was not read and the owner's note was used. A domain that does not exist was `SKIPPED` and the scan carried on.
+
+**What did not work, or was fixed:**
+1. In run 1 the CEO wrote the lookout's hire to the log twice (`watch my competitors` and the first `radar`). **Fix:** CLAUDE.md now skips the second `hire` line on the first scan. Runs 2-4 were their own `radar` jobs, so one line each is correct.
+2. A second scan on the same day could not see the previous scan (today's file was left out). **Fix:** the scanner reads the previous file before writing over it. Run 2 ran with this fix.
+3. In back-to-back tries Reddit once returned `HTTP 429` (too many requests) and YouTube once dropped the connection. **Fix:** on temporary errors, wait 5 seconds and try once more. The scan after the fix read 7/7. After dozens of tries within minutes, Reddit returned `429` again even after the retry; then only Reddit is skipped and the report comes out with the other sources. Two shifts a week never get near that rate.
+4. In run 2 the lookout wrote its own Python command to inspect the raw file; the Windows console failed on an emoji and the lookout recovered. **Fix:** the lookout reads the raw file with the Read tool. No run was made after this rule.
+5. A Google News link added by hand only gave the title "Google News". **Fix:** such links count as unreadable and the owner is told to paste the article's own address.
+6. The "Urla restoran" and "Urla gastronomi" searches brought off-topic news (cigarette sales, London). The lookout said so in both reports and suggested narrower words. Search quality depends on the words the owner picks; the script cannot fix that.
+7. YouTube feed numbers lag: one video's views looked 57 lower after 5 minutes. The lookout called it counter lag; the job description now says "draw no momentum conclusion from negative or zero growth".
+
+**English scanner:** `bin/lookout_scan.py` was run on its own twice with `company/radar/sources.example.md` as the list: 7/7 sources, 29 items, the second run saw the first as the previous scan. A later rerun read 6/7 (Reddit `429`, see item 3). `--find-channel` and `--try` were tried too.
+
+**Not tested in the lookout run:**
+- Task Scheduler starting the task at its own time (the task was created and deleted; the script was run by hand).
+- Mac: `bin/radar_shift.sh` only passed a syntax check; cron and launchd were not tried.
+- Asking the questions one at a time in the chat (the answers were in the message), and the path for a computer without Python.
+- A FIX round on an opportunity draft (the auditor said PASS).
+- The English package (`agent-company`) run with Claude.
+- Hourly growth over a real shift gap (3-4 days); the test scans were 4-6 minutes apart.
+
 ## Not tested
 
 - The question-and-answer part of `setup` (tried with the demo company; the step that turns the folder into a repository was done by hand).

@@ -24,6 +24,7 @@ When you tell a single chat "write this week's newsletter, write the Instagram a
 | Illustrator | Covers, posters, scene plans, diagrams. A brief and a drawing that opens in the browser for every visual. | Yes |
 | Composer | A music and sound plan for a video or ad, and the brief to give a music generator. | Yes |
 | Researcher | Competitor, price and trend research. Every fact with its source link. | Yes |
+| Lookout | Competitor radar. Scans the list you give it two mornings a week, writes who posted what and what took off, and tells you what to make today. | No |
 | Auditor | Checks every output that will leave the company against the company card and the red lines. Says PASS or FIX. | No |
 
 You can add any role you want: just type `hire translator`.
@@ -73,6 +74,44 @@ Write this week's email newsletter for Urla Table, and the Instagram announcemen
 
 Once you have read the job in the approval folder, type `approve <file>` or `reject <file> <your note>`. If you reject it, the CEO passes your note to the right worker and has it fixed.
 
+## Competitor radar: the lookout
+
+A second job you can give the company: watching your competitors. The CEO hires a lookout for it and gives it the list to watch. The lookout scans the list and leaves you a three-part report on every shift:
+
+1. **What they did:** who posted what in the last few days, and what took off.
+2. **The angle that fits us:** where that content connects to your company.
+3. **What we should make today:** three concrete ideas, each for a channel.
+
+If the lookout sees something fresh that is gaining views fast, it also writes a reply or post draft. The draft goes through the auditor and lands in the approval folder. Nothing is sent unless you approve it.
+
+**Setup.** Give Claude Code this system's GitHub address, type `setup` in the folder, then type:
+
+```text
+watch my competitors
+```
+
+The CEO asks at most five questions: who to watch (YouTube channel, site, blog), which words to search for in the news, any links you want to add by hand, how many days to scan, which channel the opportunity drafts are for. It writes the list itself and runs the first scan. After that, for every new report:
+
+```text
+radar
+```
+
+**What it reads.** All free, no keys:
+
+| Source | How | Traction data |
+|---|---|---|
+| YouTube channel | The channel's public feed | Views and likes |
+| Site or blog | The site's feed, or its sitemap if there is no feed | None |
+| News | Google News search | None |
+| Reddit | Community or search feed | None |
+| A link you add by hand | The text of X and TikTok posts, the title of other pages | None |
+
+Following X and Instagram accounts on a schedule is not in this version: these sites do not give a list without a key. If you add the link of a post you saw, the lookout reads it too. An Instagram link needs a login, so it is not read; the note you write next to it is used. Where there is no view data, the lookout makes up no numbers; it writes "no view data".
+
+**Fixed shift.** If you like, the lookout runs on its own two mornings a week (for example Monday and Thursday at 08:30). Just say "set up the lookout's shift"; the CEO adds a line to Task Scheduler on Windows or to cron on a Mac. Your computer has to be on at that time. It is optional; you can also run it by typing `radar`.
+
+**What you need.** Python 3 on your computer. Most Macs have it; on Windows, if it is missing, the CEO tells you how to install it from python.org. The CEO runs the scan; you do not need to open a terminal.
+
 ## Limits
 
 - At most 5 workers and at most 2 helpers in total per job. A helper cannot take a helper.
@@ -86,7 +125,8 @@ Yes, with real runs. All of it is in `TEST-RESULT.md`.
 
 - **Round 1, weekly newsletter:** the CEO hired the writer and the auditor, and the writer took a helper for the Instagram post. Two desks were opened, both merged without conflicts, and the job landed in the approval folder. 16 log lines, 3 minutes 50 seconds.
 - **Round 2, newsletter and chalkboard poster:** the writer and the illustrator worked at their own desks at the same time, and the auditor started after both had merged. 3 workers, 1 helper, 3 merges, 22 log lines, 5 minutes.
-- **Sent out:** zero in both rounds.
+- **The lookout, competitor radar:** four runs with real public sources (3 food channels, a food site, Google News, Reddit). `watch my competitors` took 3 minutes 32 seconds: 7 of 7 sources read, 30 items from the last 4 days, a 63-line report. The lookout did not count a fresh video that did not fit the company as an opportunity; it wrote an Instagram draft from a news story the owner added with an "opportunity" note, and the auditor said PASS. The shift script ran from start to finish on Windows when started by hand.
+- **Sent out:** zero in every run.
 
 The issues that came up in the test and the commands that were not tested are in the same file.
 

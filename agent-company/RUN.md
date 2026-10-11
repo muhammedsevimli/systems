@@ -71,6 +71,30 @@ hire translator
 
 Claude asks three questions (what it will produce, which tools it needs, when it may take a helper), writes the worker's job description as `.claude/agents/translator.md` and shows it to you. If Claude Code asks for permission to write into that folder, approve it. A new worker sometimes only appears on the staff in the next session. If it does not show up in this session, the CEO opens it as a general worker and has it read its job description, and the job still gets done.
 
+## 6. Have your competitors watched
+
+```text
+watch my competitors
+```
+
+The CEO hires the lookout and asks at most five questions:
+
+1. Who should we watch? Each competitor's name and, if they have one, their YouTube channel, site or blog.
+2. Which words should we search for in the news? (for example "Urla restaurant") If your city has a Reddit community, add it too.
+3. Any post links you want to add by hand?
+4. How many days should we scan? (default 4)
+5. Which channel should the opportunity drafts be for?
+
+It finds the channel's feed from the YouTube channel URL itself, writes the list as `company/radar/sources.md` and runs the first scan. The report lands in `company/approval/radar-<date>.md`: what they did, the angle that fits us, what we should make today. If there is something fresh that is gaining views fast, a reply or post draft sits below it; the draft goes through the auditor, and you do the sending.
+
+For every report after that:
+
+```text
+radar
+```
+
+To add or remove a source, just say it in the chat ("add this channel too"). If you want it to run on its own two mornings a week, type "set up the lookout's shift"; the CEO adds it to Task Scheduler on Windows or to cron on a Mac. To remove it, type "remove the lookout's shift".
+
 ## How to read the log
 
 `company/log.jsonl` keeps one event per line:

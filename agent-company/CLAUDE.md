@@ -13,6 +13,8 @@ Read `company/COMPANY.md` before every job. The company's name, voice, red lines
 | `shift` | Writes the shift board of the last job in chat: who was hired, who is at which desk, who finished, what is waiting for approval. Reads it from the log. |
 | `approve <file>` | Approves a job in the approval folder. Writes `approved` to the log. |
 | `reject <file> <note>` | Sends the job back with a note. Writes `rejected` to the log, passes the note to the right worker and has it fixed. |
+| `watch my competitors` | First-time setup of the competitor radar. Hires the lookout, gets the list to watch from your owner with at most five questions, writes `company/radar/sources.md`, runs the first scan. See the `watch my competitors` flow below. |
+| `radar` | A new scan and report. The lookout scans the list and leaves the report as `company/approval/radar-<date>.md`. See the `radar` flow below. |
 | A job in plain words | Like "write this week's newsletter for Urla Table". Runs the job flow below from start to finish. |
 
 When your owner talks in the folder for the first time and `company/COMPANY.md` says `demo: yes`, suggest the `setup` flow first. If your owner wants to try it with the demo company first ("let me try first"), you can run the job with the demo company.
@@ -25,6 +27,7 @@ When your owner talks in the folder for the first time and `company/COMPANY.md` 
 | Illustrator | `.claude/agents/illustrator.md` | When a visual is needed: scene plan, cover, poster, diagram. | Yes |
 | Composer | `.claude/agents/composer.md` | When sound or music is needed: music plan, sound effect list, a brief for a music generator. | Yes |
 | Researcher | `.claude/agents/researcher.md` | When outside information is needed: competitors, prices, trends, sourced facts. | Yes |
+| Lookout | `.claude/agents/lookout.md` | Competitor radar: in `watch my competitors` and `radar` jobs. Scans the sources on the list, writes a three-part report and opportunity drafts. | No |
 | Auditor | `.claude/agents/auditor.md` | At the end of every job. Every output that leaves the company goes through the auditor. | No |
 
 If no role on the staff fits, write a new role with the `hire` flow.
@@ -40,7 +43,7 @@ Give the job a short name (`<job>`, lowercase, no spaces, for example `newslette
 Pick a worker from the staff for each need. Limits:
 - At most `max_workers` (default 5) workers per job.
 - At most `max_helpers` (default 2) helpers in total for the whole job. A worker takes the helper; you count it.
-- Every job has an auditor.
+- Every job has an auditor. The one exception is the `radar` job: the report is an internal document, so the auditor joins only when there is an opportunity draft.
 
 Log every hire:
 ```bash
@@ -153,6 +156,60 @@ There is no off-the-books work: no hire, desk or helper exists unless it is in t
 3. Write `.claude/agents/<role>.md` with the template's structure (role name lowercase, no spaces). Show it to your owner. Claude Code may ask your owner for permission to write into the `.claude/` folder; tell them "if a permission prompt comes up, approve it". If permission is not given, write the file as `company/staff-drafts/<role>.md`, tell your owner and use the route in step 5 below (have the worker read this draft as its job description).
 4. Add a row to the staff table (in this file), `bash company/log.sh ceo hire "<role>: added to the staff"`, commit.
 5. The new worker may not show up in the Agent tool in this session. If it does not, use the `general-purpose` route from step 4 of the job flow (Shift): have the worker read its job description file first. It will be on the staff in the next session.
+
+## `watch my competitors` flow
+
+The board's "watch my competitors" job. The CEO hires a lookout, gives it the list to watch and has it run the first scan.
+
+1. **Preparation.** If the folder is not a repository, run step 1 of the `setup` flow. Find Python: try `python3 --version`, `python --version`, `py -3 --version` in that order and use the first command that prints a version. On Windows `python3` may say "Python was not found"; do not count that one. If none works, tell your owner in plain words: install Python 3 from python.org (on Windows, tick the "Add python.exe to PATH" box on the first install screen), then type `watch my competitors` again.
+2. **Hiring.** `bash company/log.sh ceo hire "lookout: competitor radar"`.
+3. **The list.** Ask your owner at most five questions, one at a time. If your owner already gave the answers in the message, do not ask; carry on from the answers.
+   1. Who should we watch? For each competitor, the name and, if they have one, their YouTube channel, site or blog.
+   2. Which words should we search for in the news? If your city or industry has a Reddit community, add it too.
+   3. Any post links you want to add by hand? The lookout reads the text of X and TikTok posts. Instagram needs a login, so it is not read; if you write a short note next to the link, that note is used.
+   4. How many days should we scan? The default is 4 days: the gap between two shifts a week.
+   5. Which channel should opportunity drafts be written for? (One of the channels in `COMPANY.md`.)
+
+   If your owner gives an X or Instagram account, say it clearly: this version cannot read these accounts on a schedule, because these sites do not give a list without a key; if they add the link of a post they saw, the lookout reads it.
+4. **Write the list.** For every YouTube channel run `<python> bin/lookout_scan.py --find-channel <channel URL>`. The script finds the `channelId` value in the channel page's source and prints the feed address; write that feed address in the row. If it cannot find it, write the channel URL as it is; the scanner tries again on every scan. If you are unsure about a site or news row, try it on its own with `<python> bin/lookout_scan.py --try <type> <address>`. Then write `company/radar/sources.md` in the format of `company/radar/sources.example.md`: `days: <n>` at the top, then the lines `python: <command>` and `opportunity_channel: <channel>`, then the table (Name, Type, Address, Note). If your owner wants to try it with the demo company ("try it first"), copy the example file as `sources.md`. Show your owner the list as a short table.
+5. **Commit.** `git add -A && git commit -m "radar: source list"`.
+6. **First scan.** Run the `radar` flow from step 2. The lookout was hired in step 2; do not write the `hire` line of the `radar` flow on this first scan.
+7. **Shift offer.** Ask your owner: "Should the lookout scan on its own two mornings a week?" If they say yes, run the command in "The lookout's fixed shift" section below yourself. You do not set up a scheduled task unless your owner asks for it.
+
+## `radar` flow
+
+A new scan and report. Your owner types it, or the fixed shift runs it on its own (`claude -p "radar"`).
+
+1. If `company/radar/sources.md` does not exist, stop: tell your owner to type `watch my competitors`.
+2. **Job description.** The job name is `radar-<YYYY-MM-DD>`. Write `company/jobs/<job>.md`: the finished state ("the radar report for the last <days> days, plus any opportunity drafts, in the approval folder"), the needs (scan, three-part report, opportunity draft), who (lookout; the auditor if a draft comes out), the Python command and the opportunity channel (the `python:` and `opportunity_channel:` lines in `sources.md`). Log: `bash company/log.sh ceo hire "lookout: <job>"` (if the first scan was opened from `watch my competitors`, the lookout was hired there; do not write this line).
+3. **Desk.** Commit, then `git worktree add company/desks/lookout -b desk/<job>-lookout` and log `desk`. Same as step 3 of the job flow.
+4. **Shift.** Open the lookout with the Agent tool (`subagent_type` = `lookout`). Put the five items from step 4 of the job flow in the prompt; instead of the helper allowance say "you take no helper", and add the Python command.
+5. **Merge.** Step 5 of the job flow. Check the lookout's `finish` line. If the lookout said "empty scan", merge, log `stopped`, tell your owner the error and stop.
+6. **Audit.** If the "Opportunity drafts" section of `company/approval/radar-<date>.md` has a draft, hire the auditor, open its desk and have it audit only the drafts (the rest of the report does not leave the company). Merge the auditor's desk and write the verdict on the "Auditor's verdict" line of the approval file. If it is `FIX`, step 6 of the job flow: run the lookout once more at a new desk with the note; this time it rewrites only the drafts and does not scan. If there is no draft, write "no draft, no audit needed" on that line.
+7. **Approval gate.** `bash company/log.sh ceo approval_request "company/approval/radar-<date>.md"`, commit. Give your owner a short summary: sources read and skipped, item count, the item that took off most, number of drafts, time, visible tokens, file path.
+
+The raw scan files (`company/radar/raw-<date>.json`) stay on the main branch. The lookout uses them on the next scan to work out view growth; do not delete them.
+
+## The lookout's fixed shift (optional)
+
+Set it up if your owner asks. The shift runs `bin/radar_shift.cmd` (Windows) or `bin/radar_shift.sh` (Mac, Linux). That file goes to the folder and opens `claude -p "radar"` with only these permissions: file edits, git, the log script, Python. The output is appended to `company/radar/shift.log`. Sample schedule: Monday and Thursday at 08:30.
+
+Windows (Task Scheduler):
+```text
+schtasks /create /tn "AgentCompany-Radar" /sc weekly /d MON,THU /st 08:30 /tr "\"<full path of the folder>\bin\radar_shift.cmd\""
+schtasks /query /tn "AgentCompany-Radar"
+schtasks /delete /tn "AgentCompany-Radar" /f
+```
+The computer must be on and the user signed in at that time. At shift time a command window opens and closes when the job is done; do not close it.
+
+Mac and Linux (cron):
+```bash
+chmod +x bin/radar_shift.sh
+(crontab -l 2>/dev/null; echo '30 8 * * 1,4 /bin/bash "<full path of the folder>/bin/radar_shift.sh"') | crontab -
+```
+A Mac may not give cron access to the folder; then turn on `cron` in System Settings > Privacy & Security > Full Disk Access. If your owner wants launchd, write a `~/Library/LaunchAgents/` file that runs the same script with `StartCalendarInterval`.
+
+To remove the shift, use `schtasks /delete` on Windows, or delete that line with `crontab -e` on a Mac.
 
 ## `shift` flow
 

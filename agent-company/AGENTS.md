@@ -14,11 +14,13 @@ Read `company/COMPANY.md` before every job.
 | `hire <role>` | Writes `.claude/agents/<role>.md` from `.claude/agents/HIRING-TEMPLATE.md` and adds it to the staff table. |
 | `shift` | Writes the board of the last job from `company/log.jsonl`. Runs nothing. |
 | `approve <file>` / `reject <file> <note>` | Approval or rejection. Writes to the log. Sends nothing. |
+| `watch my competitors` | Hires the lookout, gets the list to watch with at most five questions, finds the YouTube channel feeds with `bin/lookout_scan.py --find-channel`, writes `company/radar/sources.md`, runs the first `radar`. |
+| `radar` | Job name `radar-<YYYY-MM-DD>`. The lookout scans with `bin/lookout_scan.py` at its own desk and writes the report as `company/approval/radar-<date>.md`. If there is an opportunity draft, the auditor audits only the drafts. |
 | A job in plain words | The flow below. |
 
 ## Staff
 
-Job descriptions live in `.claude/agents/`: `writer.md`, `illustrator.md`, `composer.md`, `researcher.md`, `auditor.md`. Every job has an auditor, and the auditor takes no helpers.
+Job descriptions live in `.claude/agents/`: `writer.md`, `illustrator.md`, `composer.md`, `researcher.md`, `lookout.md`, `auditor.md`. Every job has an auditor, and the auditor takes no helpers; the one exception is the `radar` job, where the auditor joins only if there is an opportunity draft. The lookout takes no helpers either. The full radar flow and the optional shift commands are in `CLAUDE.md`.
 
 ## Job flow (summary)
 
