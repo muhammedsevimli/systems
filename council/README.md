@@ -26,47 +26,46 @@ The flow:
 
 ## Setup
 
-You need [Claude Code](https://claude.com/claude-code), plus Python on your computer for the live viewing page (most computers already have it).
+All you need is the Claude desktop app. If you use ChatGPT, do the same steps in Codex.
 
-1. Open Claude Code, give it this address and say "download this for me":
+1. Open the Claude desktop app and start a new chat in the Code tab. Paste this address and say "download this for me and work in this folder":
 
 ```text
 github.com/muhammedsevimli/systems/tree/main/council
 ```
 
-2. Open the downloaded `council` folder in Claude Code (start it inside the folder).
-3. Type your decision in the chat:
+Claude handles the rest. If it needs to install something, it asks you first and you approve.
+
+2. Type your decision:
 
 ```text
 convene the council: should I open a second location?
 ```
 
-If something is missing, Claude asks at most three questions. A full council takes a few minutes; you get the short decision in the chat and the full report in the folder.
+If something is missing, Claude asks at most three questions, then convenes the council. It takes a few minutes. You get the short decision in the chat, and the full report stays in the folder.
 
-To download it by hand: `npx degit muhammedsevimli/systems/council council`
-
-## Watch the room live
-
-While the council runs, in a second window:
+3. If you want to watch the room live, type in the same chat:
 
 ```text
-python room/server.py
+open the room
 ```
 
-Then open http://localhost:4731 in your browser. As each card arrives that seat speaks, its words flow into a speech bubble, objection and agreement arrows are drawn in round two, and the decision band opens at the end. Hover over a seat and it repeats its last words.
+Claude starts the page and gives you an address to click. As each card arrives that seat speaks, its words flow into a speech bubble, objection and agreement arrows are drawn in round two, and the decision band opens at the end. Hover over a seat and it repeats its last words.
 
-To replay a finished session card by card (for a screen recording): http://localhost:4731/?play=1&step=4 (4 seconds per card; press R to restart, C to go back to live).
+To watch a finished session again card by card (for a screen recording), type "replay the room". Each card stays on screen for 4 seconds; press R to restart, C to go back to live.
 
-The page only reads the session folder and connects to nothing else. The first time you open it, it shows the fictional example session that ships with the folder (`sessions/example-urla-sofrasi/`); when you convene your own council it switches to yours automatically.
+The page only reads the session folder and connects to nothing else. The first time you open it, it shows the fictional example session that ships with the folder; when you convene your own council it switches to yours on its own.
 
 ## Modes
 
-| Command | What happens |
+All of them are plain sentences you type in the chat:
+
+| What you type | What happens |
 |---|---|
-| `convene the council: <decision>` or `/council <decision>` | Full council: 5 seats, 2 rounds (10 agent runs) |
-| `convene the council: <decision> --fast` | Fast council: 3 seats picked for the decision, 1 round |
-| `convene the council: <decision> --seats buffett,jobs,hormozi` | You pick the seats |
-| `council ask hormozi <question>` | A short question to a single seat, no scores. The answer lands in `sessions/questions/` |
+| `convene the council: <decision>` | Full council: 5 seats, 2 rounds |
+| `quick council: <decision>` | Quick council: 3 seats picked for the decision, 1 round |
+| `convene the council: <decision>, with Buffett, Jobs and Hormozi` | You pick the seats |
+| `council ask hormozi: <question>` | A short question to a single seat, no scores. The answer lands in `sessions/questions/` |
 
 ## Example
 
@@ -76,15 +75,13 @@ The page only reads the session folder and connects to nothing else. The first t
 
 ```text
 council/
-  .claude/skills/council/SKILL.md     the Chair's flow and scoring rules
-  .claude/agents/council-<seat>.md    the five seats
-  brains/<seat>/                      hot, frameworks, voice, stories, sources
-  brains/BRAIN-TEMPLATE.md            template for adding a new seat
-  sessions/                           every council opens a folder here
-  room/                               live viewing page (server.py)
+  brains/<seat>/             each seat's sources, frameworks, voice and stories
+  brains/BRAIN-TEMPLATE.md   template for adding a new seat
+  sessions/                  every council opens a folder here
+  room/                      live viewing page
 ```
 
-To add a new seat: have a brain folder written with `brains/BRAIN-TEMPLATE.md`, copy a seat file and change its name and question, and add it to the seat list in `SKILL.md`.
+To add a new seat, type "add a new seat to the council: <person>, their question is <question>". Claude writes the brain folder from the template, sets up the seat and adds it to the list; it shows you the sources and asks for your approval.
 
 ## Honesty
 
@@ -96,10 +93,16 @@ To add a new seat: have a brain folder written with `brains/BRAIN-TEMPLATE.md`, 
 
 ## Supported tools
 
-| Tool | File it reads |
-|---|---|
-| Claude Code | `CLAUDE.md`, `.claude/skills/` and `.claude/agents/` |
-| Codex, Google Antigravity, Windsurf, Kilo and 20+ tools | `AGENTS.md` (in a tool that cannot open sub-agents, the Chair plays the seats one after another) |
+The Claude desktop app (Code tab) runs the council at its best: all five seats write at the same time. Codex in ChatGPT, Google Antigravity, Windsurf, Kilo and 20+ other tools understand the same folder; in a tool that cannot run the seats at the same time, the assistant plays them one after another.
+
+## Advanced
+
+This section is only for people who want to set things up by hand; the flow above needs none of it.
+
+- Download as ZIP: on the [repository page](https://github.com/muhammedsevimli/systems), green Code button → Download ZIP. Unzip it and pick the `council` folder inside in Claude's Code tab.
+- If you know the command line: `npx degit muhammedsevimli/systems/council council`
+- Start the room by hand: `python room/server.py` in the folder, then http://localhost:4731 (replay: http://localhost:4731/?play=1&step=4).
+- Instructions the assistant reads: `CLAUDE.md` (Claude), `AGENTS.md` (Codex and others); the flow and the seats live in `.claude/skills/council/` and `.claude/agents/`.
 
 ---
 
