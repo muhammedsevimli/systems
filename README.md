@@ -26,6 +26,7 @@ An open collection of real systems Muhammed Sevimli builds with AI. Each system 
 | Job Application Agent | Every morning it finds and scores matching LinkedIn listings, reorders your CV for each listing, writes the cover letter and the form answers, and fills in the Easy Apply form up to the last step. Whether it presses submit is your call, with a single line. It never adds experience, tools or dates your CV does not have. | [job-application-agent/](job-application-agent/) |
 | CV Screening Agent | It reads the CVs sent to your listing, compares each one with the listing and scores it out of 100, rejects anyone who crosses your red lines with the reason written down, and builds the shortlist. It drafts interview invites and polite rejection emails. It never scores age, gender, marital status or photo, and the CVs never leave your computer. There is also a `screen me` mode for job seekers: it shows the score the hiring side would see, before you apply. | [cv-screening-agent/](cv-screening-agent/) |
 | Agent Company | Run Claude Code like a company. Claude becomes the CEO: you give it a job, it works out the needs and hires a worker from the staff for each one (writer, illustrator, composer, researcher, auditor, or a new role it writes from the hiring template). Every worker works in their own copy of the files and the copies are merged when they finish; a worker can take a helper when it needs one. Every event goes into a log, the finished work lands in an approval folder, and nothing goes out until you approve it. | [agent-company/](agent-company/) |
+| Council | Put a business decision in front of a five-seat advisory council: simulations of Buffett, Bezos, Musk, Jobs and Hormozi compiled from their public sources. Claude seals its own opinion first, the seats write cards over two rounds and object to each other, and at the end you get a score table and a decision draft labeled GO / CONDITIONAL GO / NO GO. In the live viewing page the seats talk. The final decision is yours. | [council/](council/) |
 
 More systems will be added over time. Each system has its own README that explains setup.
 
@@ -59,6 +60,7 @@ npx degit muhammedsevimli/systems/agent-team agent-team
 npx degit muhammedsevimli/systems/job-application-agent job-application-agent
 npx degit muhammedsevimli/systems/cv-screening-agent cv-screening-agent
 npx degit muhammedsevimli/systems/agent-company agent-company
+npx degit muhammedsevimli/systems/council council
 ```
 
 Or clone the whole repo, or download it with the green **Code → Download ZIP** and use any folder you want.
